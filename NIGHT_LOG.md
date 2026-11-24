@@ -19,10 +19,10 @@
 - 배포: https://sumokmax-proj.github.io/cau-han/ (main), https://sumokmax-proj.github.io/cau-han/dev/ (dev)
 
 ### 막힌 것
-- 저장소 전용 토큰에 Pages 권한이 없어 API로 Pages를 켜지 못함 (403) → Max가 웹에서 Source: GitHub Actions로 켬 (완료)
-- 토큰에 Contents 쓰기 권한이 없어 `git push`가 403 (dry-run도 403). 푸시하려면 토큰에 Contents·Workflows: Read and write 필요
-- `github-pages` 환경의 배포 허용 브랜치가 main뿐. dev 배포를 하려면 dev를 추가해야 함 (토큰에 Administration 권한이 없어 API로 못 함 → 웹: Settings → Environments → github-pages → Deployment branches에 dev 추가)
-- 그래서 dev 브랜치 생성·푸시와 배포 확인은 아직 못 함
+- 토큰에 Pages 권한이 없어 API로 Pages를 켜지 못함 (403) → Max가 웹에서 Source: GitHub Actions로 켬 (해결)
+- 토큰에 Contents·Workflows 쓰기 권한이 없어 푸시 403 → Max가 토큰 권한 추가 (해결)
+- `github-pages` 환경이 main만 배포 허용 → dev 추가됨 (해결)
+- 결과: main·dev 첫 배포 둘 다 성공, 두 주소 모두 200 응답 확인
 - jsdom 31은 Node 24.15 이상이 필요한데 이 PC는 Node 24.12라서 jsdom 29로 고정함
 - CLAUDE.md에는 "Claude는 main에 푸시하지 않는다"고 되어 있지만, 첫 세팅 커밋만 Max의 명시적 요청으로 main에 푸시함. 이후 작업은 dev에서만
 
