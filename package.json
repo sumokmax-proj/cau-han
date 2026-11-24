@@ -1,0 +1,13 @@
+{
+  "name": "cau-han",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cầu Hàn — 베트남 직장인을 위한 한자어 학습 POC (정적 사이트)",
+  "scripts": {
+    "test": "node --test \"tests/**/*.test.js\"",
+    "serve": "npx --yes http-server -c-1 -p 8080 ."
+  },
+  "devDependencies": {
+    "jsdom": "^29.1.1"
+  }
+}
