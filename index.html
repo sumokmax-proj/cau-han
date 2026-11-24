@@ -256,7 +256,12 @@ const q=st.log.filter(l=>l.e==='quiz'),ok=q.filter(l=>l.ok).length;
 const sn=D.filter(d=>seen(d.k)),kn=sn.filter(d=>st.cards[d.k].known);
 const worst=D.filter(d=>st.cards[d.k]&&st.cards[d.k].no>0).sort((a,b)=>st.cards[b.k].no-st.cards[a.k].no).slice(0,5);
 const r={1:0,2:0,3:0};st.fb.forEach(f=>{if(f.r)r[f.r]++;});
-const L=['Cầu Hàn POC 리포트','사용한 날: '+days.size+'일','학습: '+sn.length+'/'+D.length+' (이미 앎: '+kn.length+')','퀴즈 정답: '+ok+'/'+q.length,
+/* 세션 길이: 'start'부터 같은 세션의 'end'까지(초). 끝까지 가지 않은 세션은 길이를 알 수 없어 뺀다. 자리를 뜬 경우의 이상값을 줄이려고 중앙값을 쓴다. */
+const ss=[];let s0=null;st.log.forEach(l=>{if(l.e==='start')s0=l.t;else if(l.e==='end'&&s0!==null){ss.push(Math.round((l.t-s0)/1000));s0=null;}});
+const med=a=>{const b=a.slice().sort((x,y)=>x-y),m=b.length>>1;return b.length%2?b[m]:Math.round((b[m-1]+b[m])/2);};
+const durTxt=ss.length?'중앙값 '+med(ss)+' / 마지막 '+ss[ss.length-1]+' (끝까지 한 세션 '+ss.length+'개)':'-';
+const knTxt=sn.length?Math.round(kn.length/sn.length*100)+'% ('+kn.length+'/'+sn.length+')':'-';
+const L=['Cầu Hàn POC 리포트','사용한 날: '+days.size+'일','학습: '+sn.length+'/'+D.length+' (이미 앎: '+kn.length+')','퀴즈 정답: '+ok+'/'+q.length,'세션 길이(초): '+durTxt,'이미 앎 비율: '+knTxt,
 '많이 틀린 단어: '+(worst.map(d=>d.k+' ×'+st.cards[d.k].no).join(', ')||'-'),'세션 평가 – 지루함 '+r[1]+' / 보통 '+r[2]+' / 유익함 '+r[3],'의견:'];
 st.fb.filter(f=>f.txt).forEach(f=>L.push('- '+new Date(f.t).toISOString().slice(0,10)+(f.r?' ['+['','지루함','보통','유익함'][f.r]+'] ':' ')+f.txt));
 L.push('DATA '+JSON.stringify({cards:st.cards,log:st.log.slice(-200)}));return L.join('\n');};
