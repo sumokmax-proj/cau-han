@@ -27,6 +27,8 @@ async function openApp(opts = {}) {
     beforeParse(window) {
       window.scrollTo = () => {}; // jsdom이 구현하지 않은 API
       window.fetch = opts.fetch || diskFetch;
+      // jsdom의 Audio.play()는 구현되어 있지 않다. 기본은 '파일 없음'처럼 재생 실패로 응답한다(앱이 기계 음성으로 넘어가는 경로)
+      window.Audio = function () { this.addEventListener = () => {}; this.pause = () => {}; this.play = () => Promise.reject(new Error('no audio in jsdom')); };
       if (opts.beforeParse) opts.beforeParse(window);
       window.addEventListener('error', (ev) => errors.push(`window.error: ${ev.message}`));
       window.addEventListener('unhandledrejection', (ev) => errors.push(`unhandledrejection: ${ev.reason}`));

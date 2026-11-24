@@ -206,7 +206,15 @@ const synth=('speechSynthesis' in window)?window.speechSynthesis:null;
 let koVoice=null;
 const pickVoice=()=>{try{const vs=synth.getVoices();koVoice=vs.find(v=>/^ko/i.test(v.lang))||null;}catch(e){}};
 if(synth){pickVoice();try{synth.addEventListener('voiceschanged',pickVoice);}catch(e){}}
-const say=text=>{if(!synth)return;try{synth.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ko-KR';if(koVoice)u.voice=koVoice;u.rate=st.rate;synth.speak(u);}catch(e){}};
+const tts=text=>{if(!synth)return;try{synth.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ko-KR';if(koVoice)u.voice=koVoice;u.rate=st.rate;synth.speak(u);}catch(e){}};
+/* 녹음 파일(audio)이 있으면 그것을 재생하고, 파일이 없거나 재생에 실패하면 기계 음성으로 대신한다. 첫 터치 안에서 바로 재생해야 해서 파일 존재를 미리 조회하지 않는다. */
+let cur_a=null;
+const say=(text,audio)=>{try{if(cur_a){cur_a.pause();cur_a=null;}}catch(e){}
+if(!audio||typeof Audio==='undefined'){tts(text);return;}
+let fell=false;const fallback=()=>{if(fell)return;fell=true;tts(text);};
+try{if(synth)synth.cancel();const a=new Audio(audio);cur_a=a;a.playbackRate=st.rate<0.85?0.8:1;a.addEventListener('error',fallback);
+const p=a.play();if(p&&p.catch)p.catch(fallback);}catch(e){fallback();}};
+const sayEx=e=>say(e[0],e[2]);
 
 /* ---------- question building ---------- */
 const simOf=k=>SIM.find(g=>g.includes(k))||[k];
@@ -228,7 +236,7 @@ shuf(fresh).forEach(d=>q.push(mkQuiz(d,false)));
 ses={q,i:0,ok:0,n:0,nNew:fresh.length,nRev:due.length,traps:[],rated:0,fbIdx:null};
 scr=q.length?'ses':'home';logE('start');save();};
 const cur=()=>ses&&ses.q[ses.i];
-const speakCur=()=>{const it=cur();if(!it)return;const d=byK[it.k];if(it.type==='learn')say(d.k);else if(it.mode==='mean')say(d.ex[0][0]);};
+const speakCur=()=>{const it=cur();if(!it)return;const d=byK[it.k];if(it.type==='learn')say(d.k);else if(it.mode==='mean')sayEx(d.ex[0]);};
 const learnPick=i=>{const it=cur();if(!it||it.phase!=='guess')return;const d=byK[it.k];it.pick=i;it.ok=it.opts[i]===d.hv;it.phase='reveal';
 const c=card(it.k);c.seen=true;c.stage=0;c.due=Date.now();logE('learn',it.k,it.ok);save();};
 const learnKnow=()=>{const it=cur();if(!it||it.phase!=='guess')return;it.known=true;it.phase='reveal';
@@ -240,7 +248,7 @@ if(!it.retry){if(ok){c.stage=it.rev?Math.min(c.stage+1,5):Math.max(c.stage,1);c.
 else{c.stage=1;c.due=Date.now()+DAY;c.no++;ses.q.push(Object.assign(mkQuiz(d,false),{retry:true}));}}
 else if(!ok)c.no++;
 if(!ok&&d.t==='C'&&it.opts[i]===d.hv&&!ses.traps.includes(d.k))ses.traps.push(d.k);
-logE('quiz',it.k,ok);save();if(it.mode==='cloze')say(d.ex[0][0]);};
+logE('quiz',it.k,ok);save();if(it.mode==='cloze')sayEx(d.ex[0]);};
 
 /* ---------- report for Max ---------- */
 const report=()=>{const days=new Set(st.log.map(l=>new Date(l.t).toISOString().slice(0,10)));
@@ -254,7 +262,7 @@ st.fb.filter(f=>f.txt).forEach(f=>L.push('- '+new Date(f.t).toISOString().slice(
 L.push('DATA '+JSON.stringify({cards:st.cards,log:st.log.slice(-200)}));return L.join('\n');};
 
 /* ---------- views ---------- */
-const spk=text=>synth?`<button class="spk" data-act="say" data-t="${esc(text)}" aria-label="${t('listen')}">${SPK}</button>`:'';
+const spk=(text,audio)=>synth?`<button class="spk" data-act="say" data-t="${esc(text)}"${audio?` data-a="${esc(audio)}"`:''} aria-label="${t('listen')}">${SPK}</button>`:'';
 const bridge=(d,o={})=>`<div class="bridge${o.anim?' grow':''}" style="--n:${d.s.length}">${d.s.map(x=>`<div class="col"><div class="kos">${x[0]}</div><i class="cab"></i><div class="seal">${x[1]}</div><i class="cab"></i><div class="hvs">${x[2]}</div></div>`).join('')}</div>`;
 const badge=d=>`<span class="badge b${d.t}">${t('type'+d.t)}</span>`;
 const hl=(s,k)=>s.replace(k,'<mark>'+k+'</mark>');
@@ -262,7 +270,7 @@ const fam=(d,all)=>{const f=D.filter(x=>x.k!==d.k&&(all||seen(x.k))&&x.s.some(a=
 return f.length?`<p class="fam">${t('sameRoot')}: ${f.map(x=>{const h=x.s.find(a=>d.s.some(b=>a[1]===b[1]));return `<b>${h[1]}</b> ${h[2]} → ${x.k} (${x.vi})`;}).join(' · ')}</p>`:'';};
 const meta=(d,all)=>`<div class="meta">${badge(d)}<div class="mean"><span class="lab">${t('meaning')}</span><b>${d.vi}</b>${d.t!=='A'?` <span class="mut">(${t('hvSays')}: “${d.hv}”)</span>`:''}</div><p class="note">${d.n}</p>${fam(d,all)}</div>`;
 const sents=(d,more)=>{const sh=d.ex.slice(0,1+more),left=d.ex.length-sh.length;
-return `<div class="sents"><span class="lab">${t('real')}</span>${sh.map(e=>`<div class="sent">${spk(e[0])}<div><div class="kr">${hl(e[0],d.k)}</div><div class="vi">${e[1]}</div></div></div>`).join('')}${left>0?`<button class="btn2" data-act="more">${t('more')} (+${Math.min(2,left)})</button>`:''}</div>`;};
+return `<div class="sents"><span class="lab">${t('real')}</span>${sh.map(e=>`<div class="sent">${spk(e[0],e[2])}<div><div class="kr">${hl(e[0],d.k)}</div><div class="vi">${e[1]}</div></div></div>`).join('')}${left>0?`<button class="btn2" data-act="more">${t('more')} (+${Math.min(2,left)})</button>`:''}</div>`;};
 const head=()=>`<div class="head"><h1>Cầu Hàn</h1><button class="lang" data-act="ui">${st.ui==='vi'?'KO':'VI'}</button></div>`;
 const sub=(title,back)=>`<div class="sbar"><button class="x" data-act="${back||'home'}" aria-label="${t('back')}">‹</button><h2>${title}</h2></div>`;
 const stat=(v,l)=>`<div class="st"><b>${v}</b><span>${l}</span></div>`;
@@ -284,7 +292,7 @@ return top+res+bridge(d,{anim:true})+meta(d,false)+sents(d,it.more)+`<button cla
 
 const rQuiz=(it,d)=>{const e=d.ex[0],done=it.pick>=0;
 const body=it.mode==='mean'
-?`<p class="q">${t('qMean')}</p><div class="sent big">${spk(e[0])}<div><div class="kr">${hl(e[0],d.k)}</div></div></div>`
+?`<p class="q">${t('qMean')}</p><div class="sent big">${spk(e[0],e[2])}<div><div class="kr">${hl(e[0],d.k)}</div></div></div>`
 :`<p class="q">${t('qCloze')}</p><div class="sent big"><div><div class="kr">${done?hl(e[0],d.k):e[0].replace(d.k,'<span class="blank"></span>')}</div><div class="vi">${e[1]}</div></div></div>`;
 const opts=`<div class="grid2">${it.opts.map((o,i)=>{let c='';if(done){if(o===it.ans)c=' ok';else if(i===it.pick)c=' no';}return `<button class="opt${it.mode==='cloze'?' kro':''}${c}" data-act="qpick" data-i="${i}"${done?' disabled':''}>${o}</button>`;}).join('')}</div>`;
 let fb='';if(done){const ok=it.opts[it.pick]===it.ans,trap=!ok&&d.t==='C'&&it.opts[it.pick]===d.hv;
@@ -325,7 +333,7 @@ const t2=document.getElementById('fbtxt');if(t2)t2.value=draft;const rep=documen
 const MOVE=['start','home','book','rules','fb','open','next'];
 app.addEventListener('click',ev=>{const b=ev.target.closest('[data-act]');if(!b||b.disabled)return;const a=b.dataset.act;
 switch(a){
-case 'say':say(b.dataset.t);return;
+case 'say':say(b.dataset.t,b.dataset.a);return;
 case 'ui':st.ui=st.ui==='vi'?'ko':'vi';save();break;
 case 'start':fbMsg='';draft='';newSession(5);speakCur();break;
 case 'home':scr='home';resetArm=false;fbMsg='';break;

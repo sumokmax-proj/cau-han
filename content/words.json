@@ -19,23 +19,28 @@
   "ex": [
    [
     "자세한 정보는 메일로 보내 드릴게요.",
-    "Thông tin chi tiết tôi sẽ gửi qua email."
+    "Thông tin chi tiết tôi sẽ gửi qua email.",
+    "audio/정보-0.mp3"
    ],
    [
     "고객 정보는 외부에 공유하면 안 돼요.",
-    "Không được chia sẻ thông tin khách hàng ra bên ngoài."
+    "Không được chia sẻ thông tin khách hàng ra bên ngoài.",
+    "audio/정보-1.mp3"
    ],
    [
     "이 정보가 맞는지 확인해 주세요.",
-    "Hãy kiểm tra giúp xem thông tin này có đúng không."
+    "Hãy kiểm tra giúp xem thông tin này có đúng không.",
+    "audio/정보-2.mp3"
    ],
    [
     "최신 정보로 업데이트했습니다.",
-    "Tôi đã cập nhật thông tin mới nhất."
+    "Tôi đã cập nhật thông tin mới nhất.",
+    "audio/정보-3.mp3"
    ],
    [
     "개인 정보 보호가 정말 중요해요.",
-    "Bảo vệ thông tin cá nhân thật sự rất quan trọng."
+    "Bảo vệ thông tin cá nhân thật sự rất quan trọng.",
+    "audio/정보-4.mp3"
    ]
   ],
   "reviewed": true
@@ -60,23 +65,28 @@
   "ex": [
    [
     "이 문제는 오늘 안에 처리해 주세요.",
-    "Hãy xử lý vấn đề này trong hôm nay nhé."
+    "Hãy xử lý vấn đề này trong hôm nay nhé.",
+    "audio/처리-0.mp3"
    ],
    [
     "요청하신 건은 이미 처리했습니다.",
-    "Việc anh/chị yêu cầu tôi đã xử lý xong rồi ạ."
+    "Việc anh/chị yêu cầu tôi đã xử lý xong rồi ạ.",
+    "audio/처리-1.mp3"
    ],
    [
     "처리 속도가 너무 느려요.",
-    "Tốc độ xử lý chậm quá."
+    "Tốc độ xử lý chậm quá.",
+    "audio/처리-2.mp3"
    ],
    [
     "서류 처리에 3일 정도 걸립니다.",
-    "Xử lý giấy tờ mất khoảng 3 ngày."
+    "Xử lý giấy tờ mất khoảng 3 ngày.",
+    "audio/처리-3.mp3"
    ],
    [
     "이 건은 누가 처리하고 있어요?",
-    "Việc này ai đang xử lý vậy?"
+    "Việc này ai đang xử lý vậy?",
+    "audio/처리-4.mp3"
    ]
   ],
   "reviewed": true
@@ -101,23 +111,28 @@
   "ex": [
    [
     "오후 3시에 회의가 있습니다.",
-    "3 giờ chiều có cuộc họp."
+    "3 giờ chiều có cuộc họp.",
+    "audio/회의-0.mp3"
    ],
    [
     "회의실 예약했어요?",
-    "Đã đặt phòng họp chưa?"
+    "Đã đặt phòng họp chưa?",
+    "audio/회의-1.mp3"
    ],
    [
     "회의 내용을 정리해서 보내 드릴게요.",
-    "Tôi sẽ tóm tắt nội dung cuộc họp rồi gửi anh/chị."
+    "Tôi sẽ tóm tắt nội dung cuộc họp rồi gửi anh/chị.",
+    "audio/회의-2.mp3"
    ],
    [
     "지금 회의 중이라서 이따가 전화할게요.",
-    "Tôi đang họp, lát nữa tôi gọi lại nhé."
+    "Tôi đang họp, lát nữa tôi gọi lại nhé.",
+    "audio/회의-3.mp3"
    ],
    [
     "화상 회의 링크 좀 보내 주세요.",
-    "Gửi giúp tôi link họp online nhé."
+    "Gửi giúp tôi link họp online nhé.",
+    "audio/회의-4.mp3"
    ]
   ],
   "reviewed": true
@@ -142,23 +157,28 @@
   "ex": [
    [
     "메일 확인 부탁드립니다.",
-    "Nhờ anh/chị kiểm tra email giúp ạ."
+    "Nhờ anh/chị kiểm tra email giúp ạ.",
+    "audio/확인-0.mp3"
    ],
    [
     "일정을 다시 확인해 주세요.",
-    "Hãy xác nhận lại lịch giúp tôi."
+    "Hãy xác nhận lại lịch giúp tôi.",
+    "audio/확인-1.mp3"
    ],
    [
     "확인했습니다. 감사합니다.",
-    "Tôi đã xem rồi ạ. Cảm ơn anh/chị."
+    "Tôi đã xem rồi ạ. Cảm ơn anh/chị.",
+    "audio/확인-2.mp3"
    ],
    [
     "확인 후 다시 연락드리겠습니다.",
-    "Tôi kiểm tra xong sẽ liên lạc lại ạ."
+    "Tôi kiểm tra xong sẽ liên lạc lại ạ.",
+    "audio/확인-3.mp3"
    ],
    [
     "본인 확인을 위해 신분증이 필요합니다.",
-    "Cần giấy tờ tùy thân để xác nhận danh tính."
+    "Cần giấy tờ tùy thân để xác nhận danh tính.",
+    "audio/확인-4.mp3"
    ]
   ],
   "reviewed": true
@@ -183,23 +203,28 @@
   "ex": [
    [
     "보고서는 금요일까지 제출해 주세요.",
-    "Hãy nộp báo cáo trước thứ Sáu nhé."
+    "Hãy nộp báo cáo trước thứ Sáu nhé.",
+    "audio/제출-0.mp3"
    ],
    [
     "서류를 아직 제출하지 않았어요.",
-    "Tôi vẫn chưa nộp giấy tờ."
+    "Tôi vẫn chưa nộp giấy tờ.",
+    "audio/제출-1.mp3"
    ],
    [
     "제출 기한이 언제예요?",
-    "Hạn nộp là khi nào vậy?"
+    "Hạn nộp là khi nào vậy?",
+    "audio/제출-2.mp3"
    ],
    [
     "영수증은 회계팀에 제출하세요.",
-    "Hóa đơn thì nộp cho phòng kế toán nhé."
+    "Hóa đơn thì nộp cho phòng kế toán nhé.",
+    "audio/제출-3.mp3"
    ],
    [
     "이미 온라인으로 제출했습니다.",
-    "Tôi đã nộp online rồi ạ."
+    "Tôi đã nộp online rồi ạ.",
+    "audio/제출-4.mp3"
    ]
   ],
   "reviewed": true
@@ -224,23 +249,28 @@
   "ex": [
    [
     "프로젝트는 계획대로 진행되고 있습니다.",
-    "Dự án đang được tiến hành đúng kế hoạch."
+    "Dự án đang được tiến hành đúng kế hoạch.",
+    "audio/진행-0.mp3"
    ],
    [
     "오늘 회의는 제가 진행하겠습니다.",
-    "Cuộc họp hôm nay tôi sẽ chủ trì."
+    "Cuộc họp hôm nay tôi sẽ chủ trì.",
+    "audio/진행-1.mp3"
    ],
    [
     "진행 상황을 공유해 주세요.",
-    "Hãy chia sẻ tình hình tiến độ nhé."
+    "Hãy chia sẻ tình hình tiến độ nhé.",
+    "audio/진행-2.mp3"
    ],
    [
     "테스트는 내일부터 진행합니다.",
-    "Việc kiểm thử sẽ được tiến hành từ ngày mai."
+    "Việc kiểm thử sẽ được tiến hành từ ngày mai.",
+    "audio/진행-3.mp3"
    ],
    [
     "지금 어디까지 진행됐어요?",
-    "Bây giờ đã làm đến đâu rồi?"
+    "Bây giờ đã làm đến đâu rồi?",
+    "audio/진행-4.mp3"
    ]
   ],
   "reviewed": true
@@ -265,23 +295,28 @@
   "ex": [
    [
     "팀장님 승인이 필요합니다.",
-    "Cần trưởng nhóm phê duyệt."
+    "Cần trưởng nhóm phê duyệt.",
+    "audio/승인-0.mp3"
    ],
    [
     "휴가 신청이 승인됐어요.",
-    "Đơn xin nghỉ phép đã được duyệt rồi."
+    "Đơn xin nghỉ phép đã được duyệt rồi.",
+    "audio/승인-1.mp3"
    ],
    [
     "예산 승인을 기다리고 있습니다.",
-    "Đang chờ phê duyệt ngân sách."
+    "Đang chờ phê duyệt ngân sách.",
+    "audio/승인-2.mp3"
    ],
    [
     "승인 없이 진행하면 안 돼요.",
-    "Chưa được duyệt thì không được làm."
+    "Chưa được duyệt thì không được làm.",
+    "audio/승인-3.mp3"
    ],
    [
     "카드 결제 승인이 거절됐습니다.",
-    "Giao dịch thẻ đã bị từ chối."
+    "Giao dịch thẻ đã bị từ chối.",
+    "audio/승인-4.mp3"
    ]
   ],
   "reviewed": true
@@ -306,23 +341,28 @@
   "ex": [
    [
     "다음 주 일정이 어떻게 되세요?",
-    "Lịch tuần sau của anh/chị thế nào ạ?"
+    "Lịch tuần sau của anh/chị thế nào ạ?",
+    "audio/일정-0.mp3"
    ],
    [
     "일정이 바뀌면 바로 알려 주세요.",
-    "Lịch có thay đổi thì báo tôi ngay nhé."
+    "Lịch có thay đổi thì báo tôi ngay nhé.",
+    "audio/일정-1.mp3"
    ],
    [
     "출장 일정을 짜고 있어요.",
-    "Tôi đang lên lịch trình công tác."
+    "Tôi đang lên lịch trình công tác.",
+    "audio/일정-2.mp3"
    ],
    [
     "이번 주는 일정이 너무 빡빡해요.",
-    "Tuần này lịch kín quá."
+    "Tuần này lịch kín quá.",
+    "audio/일정-3.mp3"
    ],
    [
     "일정을 조정할 수 있을까요?",
-    "Có thể điều chỉnh lịch được không ạ?"
+    "Có thể điều chỉnh lịch được không ạ?",
+    "audio/일정-4.mp3"
    ]
   ],
   "reviewed": true
@@ -347,23 +387,28 @@
   "ex": [
    [
     "재고 관리가 제일 중요해요.",
-    "Quản lý tồn kho là quan trọng nhất."
+    "Quản lý tồn kho là quan trọng nhất.",
+    "audio/관리-0.mp3"
    ],
    [
     "일정 관리는 엑셀로 하고 있어요.",
-    "Tôi quản lý lịch bằng Excel."
+    "Tôi quản lý lịch bằng Excel.",
+    "audio/관리-1.mp3"
    ],
    [
     "이 시스템은 누가 관리해요?",
-    "Hệ thống này ai quản lý vậy?"
+    "Hệ thống này ai quản lý vậy?",
+    "audio/관리-2.mp3"
    ],
    [
     "품질 관리팀에서 일하고 있습니다.",
-    "Tôi làm việc ở nhóm quản lý chất lượng."
+    "Tôi làm việc ở nhóm quản lý chất lượng.",
+    "audio/관리-3.mp3"
    ],
    [
     "요즘 건강 관리 잘하고 계세요?",
-    "Dạo này anh/chị có giữ gìn sức khỏe tốt không?"
+    "Dạo này anh/chị có giữ gìn sức khỏe tốt không?",
+    "audio/관리-4.mp3"
    ]
   ],
   "reviewed": true
@@ -388,23 +433,28 @@
   "ex": [
    [
     "자료를 검토한 후에 답변드리겠습니다.",
-    "Tôi sẽ xem xét tài liệu rồi trả lời ạ."
+    "Tôi sẽ xem xét tài liệu rồi trả lời ạ.",
+    "audio/검토-0.mp3"
    ],
    [
     "계약서 검토 부탁드립니다.",
-    "Nhờ anh/chị xem giúp hợp đồng ạ."
+    "Nhờ anh/chị xem giúp hợp đồng ạ.",
+    "audio/검토-1.mp3"
    ],
    [
     "그 의견은 긍정적으로 검토해 보겠습니다.",
-    "Ý kiến đó chúng tôi sẽ xem xét theo hướng tích cực."
+    "Ý kiến đó chúng tôi sẽ xem xét theo hướng tích cực.",
+    "audio/검토-2.mp3"
    ],
    [
     "검토 결과를 공유해 주세요.",
-    "Hãy chia sẻ kết quả rà soát nhé."
+    "Hãy chia sẻ kết quả rà soát nhé.",
+    "audio/검토-3.mp3"
    ],
    [
     "아직 검토 중입니다.",
-    "Vẫn đang xem xét ạ."
+    "Vẫn đang xem xét ạ.",
+    "audio/검토-4.mp3"
    ]
   ],
   "reviewed": true
@@ -429,23 +479,28 @@
   "ex": [
    [
     "공장에서 하루에 천 개를 생산합니다.",
-    "Nhà máy sản xuất một nghìn cái mỗi ngày."
+    "Nhà máy sản xuất một nghìn cái mỗi ngày.",
+    "audio/생산-0.mp3"
    ],
    [
     "이번 달 생산량이 많이 늘었어요.",
-    "Sản lượng tháng này tăng nhiều."
+    "Sản lượng tháng này tăng nhiều.",
+    "audio/생산-1.mp3"
    ],
    [
     "생산 일정이 일주일 늦어졌어요.",
-    "Lịch sản xuất bị chậm một tuần."
+    "Lịch sản xuất bị chậm một tuần.",
+    "audio/생산-2.mp3"
    ],
    [
     "생산 라인을 하나 더 늘릴 예정입니다.",
-    "Dự kiến sẽ thêm một dây chuyền sản xuất."
+    "Dự kiến sẽ thêm một dây chuyền sản xuất.",
+    "audio/생산-3.mp3"
    ],
    [
     "오후에 생산팀과 회의가 있어요.",
-    "Chiều nay tôi có cuộc họp với nhóm sản xuất."
+    "Chiều nay tôi có cuộc họp với nhóm sản xuất.",
+    "audio/생산-4.mp3"
    ]
   ],
   "reviewed": true
@@ -470,23 +525,28 @@
   "ex": [
    [
     "이 업무는 제가 담당하고 있습니다.",
-    "Tôi đang phụ trách công việc này."
+    "Tôi đang phụ trách công việc này.",
+    "audio/담당-0.mp3"
    ],
    [
     "담당자에게 연락해 주세요.",
-    "Hãy liên lạc với người phụ trách."
+    "Hãy liên lạc với người phụ trách.",
+    "audio/담당-1.mp3"
    ],
    [
     "담당 부서가 어디예요?",
-    "Bộ phận phụ trách là bộ phận nào vậy?"
+    "Bộ phận phụ trách là bộ phận nào vậy?",
+    "audio/담당-2.mp3"
    ],
    [
     "다음 달부터 영업을 담당하게 됐어요.",
-    "Từ tháng sau tôi sẽ phụ trách mảng kinh doanh."
+    "Từ tháng sau tôi sẽ phụ trách mảng kinh doanh.",
+    "audio/담당-3.mp3"
    ],
    [
     "담당이 바뀌었으니 다시 확인 부탁드립니다.",
-    "Người phụ trách đã đổi, nhờ anh/chị kiểm tra lại ạ."
+    "Người phụ trách đã đổi, nhờ anh/chị kiểm tra lại ạ.",
+    "audio/담당-4.mp3"
    ]
   ],
   "reviewed": true
@@ -511,23 +571,28 @@
   "ex": [
    [
     "출하 전에 모든 제품을 검사합니다.",
-    "Mọi sản phẩm đều được kiểm tra trước khi xuất hàng."
+    "Mọi sản phẩm đều được kiểm tra trước khi xuất hàng.",
+    "audio/검사-0.mp3"
    ],
    [
     "품질 검사에서 불량이 발견됐습니다.",
-    "Đã phát hiện hàng lỗi khi kiểm tra chất lượng."
+    "Đã phát hiện hàng lỗi khi kiểm tra chất lượng.",
+    "audio/검사-1.mp3"
    ],
    [
     "검사 결과는 다음 주에 나와요.",
-    "Kết quả kiểm tra sẽ có vào tuần sau."
+    "Kết quả kiểm tra sẽ có vào tuần sau.",
+    "audio/검사-2.mp3"
    ],
    [
     "혈액 검사 결과가 나왔어요.",
-    "Đã có kết quả xét nghiệm máu."
+    "Đã có kết quả xét nghiệm máu.",
+    "audio/검사-3.mp3"
    ],
    [
     "꼼꼼하게 검사해 주세요.",
-    "Hãy kiểm tra thật kỹ nhé."
+    "Hãy kiểm tra thật kỹ nhé.",
+    "audio/검사-4.mp3"
    ]
   ],
   "reviewed": true
@@ -552,23 +617,28 @@
   "ex": [
    [
     "다음 주에 서울로 출장 가요.",
-    "Tuần sau tôi đi công tác Seoul."
+    "Tuần sau tôi đi công tác Seoul.",
+    "audio/출장-0.mp3"
    ],
    [
     "팀장님은 지금 출장 중이세요.",
-    "Trưởng nhóm đang đi công tác."
+    "Trưởng nhóm đang đi công tác.",
+    "audio/출장-1.mp3"
    ],
    [
     "출장비는 회사에서 지원합니다.",
-    "Chi phí công tác do công ty chi trả."
+    "Chi phí công tác do công ty chi trả.",
+    "audio/출장-2.mp3"
    ],
    [
     "이번 출장은 3박 4일이에요.",
-    "Chuyến công tác lần này 4 ngày 3 đêm."
+    "Chuyến công tác lần này 4 ngày 3 đêm.",
+    "audio/출장-3.mp3"
    ],
    [
     "출장 보고서를 제출해 주세요.",
-    "Hãy nộp báo cáo công tác nhé."
+    "Hãy nộp báo cáo công tác nhé.",
+    "audio/출장-4.mp3"
    ]
   ],
   "reviewed": true
@@ -593,23 +663,28 @@
   "ex": [
    [
     "고객 의견을 반영해서 서비스를 개선했습니다.",
-    "Chúng tôi đã cải thiện dịch vụ dựa trên ý kiến khách hàng."
+    "Chúng tôi đã cải thiện dịch vụ dựa trên ý kiến khách hàng.",
+    "audio/개선-0.mp3"
    ],
    [
     "개선할 점이 있으면 말씀해 주세요.",
-    "Có điểm nào cần cải thiện thì cứ nói với tôi nhé."
+    "Có điểm nào cần cải thiện thì cứ nói với tôi nhé.",
+    "audio/개선-1.mp3"
    ],
    [
     "업무 프로세스를 개선해야 합니다.",
-    "Cần cải thiện quy trình làm việc."
+    "Cần cải thiện quy trình làm việc.",
+    "audio/개선-2.mp3"
    ],
    [
     "지난달보다 많이 개선됐네요.",
-    "So với tháng trước đã cải thiện nhiều rồi nhỉ."
+    "So với tháng trước đã cải thiện nhiều rồi nhỉ.",
+    "audio/개선-3.mp3"
    ],
    [
     "내일까지 개선 방안을 정리해 주세요.",
-    "Hãy tổng hợp phương án cải thiện trước ngày mai nhé."
+    "Hãy tổng hợp phương án cải thiện trước ngày mai nhé.",
+    "audio/개선-4.mp3"
    ]
   ],
   "reviewed": true
@@ -634,23 +709,28 @@
   "ex": [
    [
     "다음 주에 한국 본사에서 방문할 예정입니다.",
-    "Tuần sau sẽ có người từ trụ sở chính Hàn Quốc sang thăm."
+    "Tuần sau sẽ có người từ trụ sở chính Hàn Quốc sang thăm.",
+    "audio/방문-0.mp3"
    ],
    [
     "고객사를 방문해서 미팅했어요.",
-    "Tôi đã đến công ty khách hàng để họp."
+    "Tôi đã đến công ty khách hàng để họp.",
+    "audio/방문-1.mp3"
    ],
    [
     "방문 목적이 무엇입니까?",
-    "Mục đích chuyến đi của anh/chị là gì?"
+    "Mục đích chuyến đi của anh/chị là gì?",
+    "audio/방문-2.mp3"
    ],
    [
     "언제 방문하시면 편하세요?",
-    "Khi nào anh/chị tiện ghé qua ạ?"
+    "Khi nào anh/chị tiện ghé qua ạ?",
+    "audio/방문-3.mp3"
    ],
    [
     "홈페이지 방문자 수가 늘었어요.",
-    "Lượng người truy cập trang web đã tăng."
+    "Lượng người truy cập trang web đã tăng.",
+    "audio/방문-4.mp3"
    ]
   ],
   "reviewed": true
@@ -675,23 +755,28 @@
   "ex": [
    [
     "이 일은 제가 책임지겠습니다.",
-    "Việc này tôi sẽ chịu trách nhiệm."
+    "Việc này tôi sẽ chịu trách nhiệm.",
+    "audio/책임-0.mp3"
    ],
    [
     "이 프로젝트 책임자가 누구예요?",
-    "Người chịu trách nhiệm dự án này là ai vậy?"
+    "Người chịu trách nhiệm dự án này là ai vậy?",
+    "audio/책임-1.mp3"
    ],
    [
     "책임감이 강한 사람이에요.",
-    "Là người có tinh thần trách nhiệm cao."
+    "Là người có tinh thần trách nhiệm cao.",
+    "audio/책임-2.mp3"
    ],
    [
     "실수에 대한 책임은 팀 전체에 있습니다.",
-    "Trách nhiệm về sai sót thuộc về cả nhóm."
+    "Trách nhiệm về sai sót thuộc về cả nhóm.",
+    "audio/책임-3.mp3"
    ],
    [
     "책임을 다른 사람에게 미루지 마세요.",
-    "Đừng đổ trách nhiệm cho người khác."
+    "Đừng đổ trách nhiệm cho người khác.",
+    "audio/책임-4.mp3"
    ]
   ],
   "reviewed": true
@@ -716,23 +801,28 @@
   "ex": [
    [
     "계약 기간은 1년입니다.",
-    "Thời hạn hợp đồng là 1 năm."
+    "Thời hạn hợp đồng là 1 năm.",
+    "audio/계약-0.mp3"
    ],
    [
     "계약서에 서명해 주세요.",
-    "Xin hãy ký vào hợp đồng."
+    "Xin hãy ký vào hợp đồng.",
+    "audio/계약-1.mp3"
    ],
    [
     "고객사와 계약을 맺었습니다.",
-    "Chúng tôi đã ký hợp đồng với công ty khách hàng."
+    "Chúng tôi đã ký hợp đồng với công ty khách hàng.",
+    "audio/계약-2.mp3"
    ],
    [
     "계약 조건을 다시 확인해 봅시다.",
-    "Cùng kiểm tra lại điều kiện hợp đồng nhé."
+    "Cùng kiểm tra lại điều kiện hợp đồng nhé.",
+    "audio/계약-3.mp3"
    ],
    [
     "계약이 다음 달에 끝나요.",
-    "Hợp đồng hết hạn vào tháng sau."
+    "Hợp đồng hết hạn vào tháng sau.",
+    "audio/계약-4.mp3"
    ]
   ],
   "reviewed": true
@@ -757,23 +847,28 @@
   "ex": [
    [
     "도움이 필요하면 언제든지 말하세요.",
-    "Cần giúp gì thì cứ nói bất cứ lúc nào nhé."
+    "Cần giúp gì thì cứ nói bất cứ lúc nào nhé.",
+    "audio/필요-0.mp3"
    ],
    [
     "이 서류가 꼭 필요해요?",
-    "Giấy tờ này nhất định phải có à?"
+    "Giấy tờ này nhất định phải có à?",
+    "audio/필요-1.mp3"
    ],
    [
     "필요한 물건은 미리 준비하세요.",
-    "Hãy chuẩn bị trước những đồ cần thiết."
+    "Hãy chuẩn bị trước những đồ cần thiết.",
+    "audio/필요-2.mp3"
    ],
    [
     "인원이 한 명 더 필요합니다.",
-    "Cần thêm một người nữa."
+    "Cần thêm một người nữa.",
+    "audio/필요-3.mp3"
    ],
    [
     "필요 없으면 버려도 돼요.",
-    "Không cần thì vứt đi cũng được."
+    "Không cần thì vứt đi cũng được.",
+    "audio/필요-4.mp3"
    ]
   ],
   "reviewed": true
@@ -798,23 +893,28 @@
   "ex": [
    [
     "올해 목표는 매출 20% 증가입니다.",
-    "Mục tiêu năm nay là tăng doanh thu 20%."
+    "Mục tiêu năm nay là tăng doanh thu 20%.",
+    "audio/목표-0.mp3"
    ],
    [
     "이번 달 목표를 달성했어요!",
-    "Tháng này đạt mục tiêu rồi!"
+    "Tháng này đạt mục tiêu rồi!",
+    "audio/목표-1.mp3"
    ],
    [
     "목표를 너무 높게 잡은 것 같아요.",
-    "Hình như mình đặt mục tiêu cao quá."
+    "Hình như mình đặt mục tiêu cao quá.",
+    "audio/목표-2.mp3"
    ],
    [
     "팀 목표를 다시 정해 봅시다.",
-    "Chúng ta đặt lại mục tiêu của nhóm nhé."
+    "Chúng ta đặt lại mục tiêu của nhóm nhé.",
+    "audio/목표-3.mp3"
    ],
    [
     "제 목표는 TOPIK 4급이에요.",
-    "Mục tiêu của tôi là TOPIK cấp 4."
+    "Mục tiêu của tôi là TOPIK cấp 4.",
+    "audio/목표-4.mp3"
    ]
   ],
   "reviewed": true
