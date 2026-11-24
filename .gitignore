@@ -8,3 +8,7 @@ Thumbs.db
 .vscode/
 .idea/
 .claude/settings.local.json
+*.token
+# 테스터 피드백은 로컬 전용 (공개 저장소)
+feedback/*
+!feedback/README.md

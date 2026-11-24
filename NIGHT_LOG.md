@@ -1,6 +1,27 @@
 # NIGHT_LOG
 
-새 기록은 맨 위에 추가한다. 형식: 바뀐 것 / 확인 방법 / 막힌 것 / 아내 검수 필요
+새 기록은 맨 위에 추가한다. 형식: 바뀐 것 / 확인 방법 / 막힌 것 / 검수 필요
+
+## 2026-11-24 — 기획 키트 반영과 폴더 정리
+
+### 바뀐 것
+- Max가 넣은 기획 키트(cau-han-kit/)를 루트에 반영
+  - CLAUDE.md, BACKLOG.md → 키트의 새 버전으로 교체
+  - docs/PRD.md, docs/PLAN_LOG.md, feedback/README.md, .claude/(learner-critic 에이전트, plan-cycle 스킬) 추가
+  - .gitignore에 feedback/*(README 제외), *.token 추가
+- 중복 정리: 루트 PRD.md(= docs/PRD.md), cau-han/·cau-han-kit/(서로 같은 사본) 삭제. index.html은 키트와 동일해서 그대로 둠
+- 이 NIGHT_LOG는 키트의 빈 템플릿 대신 기존 기록을 유지
+
+### 확인 방법
+- 루트에 docs/, feedback/, .claude/가 있고 중복 폴더가 없음
+- `npm test` 통과
+
+### 막힌 것
+- 빈 cau-han/ 폴더 하나는 Claude Code가 그 안에서 실행 중이라 못 지움 (git에는 안 올라감). 세션을 끝낸 뒤 지우면 됨
+- 키트 BACKLOG에서 빠진 이전 항목: "접근성 점검", "오늘 완료 상태 표시". 의도적으로 뺀 것인지 Max 확인 필요
+
+### 검수 필요
+- 없음 (앱 내용은 바꾸지 않음)
 
 ## 2026-11-24 — 저장소 연결과 배포 세팅
 
