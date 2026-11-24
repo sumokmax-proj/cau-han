@@ -3,46 +3,21 @@
 // 그 사이 스크립트 에러가 0개인지 확인한다.
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const fs = require('node:fs');
-const path = require('node:path');
-const { JSDOM, VirtualConsole } = require('jsdom');
+const { openApp } = require('./helpers/app');
 
-const HTML = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+const clickOf = (el) => el.dispatchEvent(new el.ownerDocument.defaultView.MouseEvent('click', { bubbles: true }));
 
-function openApp() {
-  const errors = [];
-  const virtualConsole = new VirtualConsole();
-  virtualConsole.on('jsdomError', (e) => errors.push(`jsdomError: ${e.message}`));
-  virtualConsole.on('error', (...args) => errors.push(`console.error: ${args.join(' ')}`));
-
-  const dom = new JSDOM(HTML, {
-    url: 'http://localhost/',
-    runScripts: 'dangerously',
-    pretendToBeVisual: true,
-    virtualConsole,
-    beforeParse(window) {
-      // jsdom이 구현하지 않은 브라우저 API (앱 코드의 문제가 아님)
-      window.scrollTo = () => {};
-      window.addEventListener('error', (ev) => errors.push(`window.error: ${ev.message}`));
-      window.addEventListener('unhandledrejection', (ev) => errors.push(`unhandledrejection: ${ev.reason}`));
-    },
-  });
-  return { dom, window: dom.window, document: dom.window.document, errors };
-}
-
-const click = (el) => el.dispatchEvent(new el.ownerDocument.defaultView.MouseEvent('click', { bubbles: true }));
-
-test('오늘 학습: 새 단어 5개 → 확인 퀴즈 → 완료 화면, 스크립트 에러 0개', () => {
-  const { document, errors } = openApp();
+test('오늘 학습: 새 단어 5개 → 확인 퀴즈 → 완료 화면, 스크립트 에러 0개', async () => {
+  const { document, errors } = await openApp();
   const app = document.getElementById('app');
   assert.ok(app.innerHTML.length > 0, '홈 화면이 렌더링되어야 한다');
 
   // 홈 화면: UI를 한국어로 바꾸고 '오늘 학습 시작' 버튼을 찾는다
-  click(app.querySelector('[data-act=ui]'));
+  clickOf(app.querySelector('[data-act=ui]'));
   const startBtn = [...app.querySelectorAll('button.btn.big[data-act=start]')]
     .find((b) => b.textContent.trim() === '오늘 학습 시작');
   assert.ok(startBtn, "'오늘 학습 시작' 버튼이 있어야 한다");
-  click(startBtn);
+  clickOf(startBtn);
 
   const learned = new Set();
   let quizzes = 0;
@@ -52,14 +27,14 @@ test('오늘 학습: 새 단어 5개 → 확인 퀴즈 → 완료 화면, 스크
     const next = app.querySelector('[data-act=next]');
     if (learnOpt) {
       learned.add(app.querySelector('.kw').textContent);
-      click(learnOpt);
+      clickOf(learnOpt);
       assert.ok(app.querySelector('.bridge'), '학습 답을 고르면 다리 카드가 보여야 한다');
     } else if (quizOpt) {
       quizzes++;
-      click(quizOpt);
+      clickOf(quizOpt);
       assert.ok(app.querySelector('.fb'), '퀴즈 답을 고르면 피드백이 보여야 한다');
     } else if (next) {
-      click(next);
+      clickOf(next);
     } else {
       assert.fail(`진행할 버튼이 없음 (step ${step}): ${app.innerHTML.slice(0, 200)}`);
     }

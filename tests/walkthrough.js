@@ -1,26 +1,12 @@
 // 워크스루: 첫 세션을 끝까지 진행하며 화면마다 사용자가 보는 텍스트를 순서대로 출력한다.
 // learner-critic이 실제 화면 흐름을 보고 평가하도록 만든 도구다. (테스트가 아님: npm test에 포함되지 않음)
 // 사용법: node tests/walkthrough.js [vi|ko]   (기본 vi = 실제 사용자가 보는 화면)
-const fs = require('node:fs');
-const path = require('node:path');
-const { JSDOM, VirtualConsole } = require('jsdom');
+const { openApp } = require('./helpers/app');
 
 const UI = process.argv[2] === 'ko' ? 'ko' : 'vi';
-const HTML = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
 
-const vc = new VirtualConsole();
-const errors = [];
-vc.on('jsdomError', (e) => errors.push(e.message));
-const dom = new JSDOM(HTML, {
-  url: 'http://localhost/',
-  runScripts: 'dangerously',
-  pretendToBeVisual: true,
-  virtualConsole: vc,
-  beforeParse(w) { w.scrollTo = () => {}; },
-});
-const { document } = dom.window;
-const app = document.getElementById('app');
-const click = (el) => el.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true }));
+(async () => {
+const { window, document, app, errors, click } = await openApp();
 
 // 화면의 보이는 텍스트: 버튼은 [ ]로 표시해 무엇을 누를 수 있는지 보이게 한다
 function visible() {
@@ -61,3 +47,4 @@ show('완료 화면');
 click(app.querySelector('[data-act=home]'));
 show('홈 (학습 후)');
 if (errors.length) console.log('\n스크립트 에러:', errors);
+})();

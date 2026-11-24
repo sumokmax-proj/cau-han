@@ -1,0 +1,822 @@
+[
+ {
+  "k": "정보",
+  "s": [
+   [
+    "정",
+    "情",
+    "tình"
+   ],
+   [
+    "보",
+    "報",
+    "báo"
+   ]
+  ],
+  "t": "C",
+  "vi": "thông tin",
+  "n": "Trong tiếng Việt, “tình báo” là gián điệp. Còn 정보 chỉ là “thông tin”.",
+  "ex": [
+   [
+    "자세한 정보는 메일로 보내 드릴게요.",
+    "Thông tin chi tiết tôi sẽ gửi qua email."
+   ],
+   [
+    "고객 정보는 외부에 공유하면 안 돼요.",
+    "Không được chia sẻ thông tin khách hàng ra bên ngoài."
+   ],
+   [
+    "이 정보가 맞는지 확인해 주세요.",
+    "Hãy kiểm tra giúp xem thông tin này có đúng không."
+   ],
+   [
+    "최신 정보로 업데이트했습니다.",
+    "Tôi đã cập nhật thông tin mới nhất."
+   ],
+   [
+    "개인 정보 보호가 정말 중요해요.",
+    "Bảo vệ thông tin cá nhân thật sự rất quan trọng."
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "처리",
+  "s": [
+   [
+    "처",
+    "處",
+    "xử"
+   ],
+   [
+    "리",
+    "理",
+    "lý"
+   ]
+  ],
+  "t": "A",
+  "vi": "xử lý",
+  "n": "Dùng y như tiếng Việt: 처리하다 = xử lý.",
+  "ex": [
+   [
+    "이 문제는 오늘 안에 처리해 주세요.",
+    "Hãy xử lý vấn đề này trong hôm nay nhé."
+   ],
+   [
+    "요청하신 건은 이미 처리했습니다.",
+    "Việc anh/chị yêu cầu tôi đã xử lý xong rồi ạ."
+   ],
+   [
+    "처리 속도가 너무 느려요.",
+    "Tốc độ xử lý chậm quá."
+   ],
+   [
+    "서류 처리에 3일 정도 걸립니다.",
+    "Xử lý giấy tờ mất khoảng 3 ngày."
+   ],
+   [
+    "이 건은 누가 처리하고 있어요?",
+    "Việc này ai đang xử lý vậy?"
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "회의",
+  "s": [
+   [
+    "회",
+    "會",
+    "hội"
+   ],
+   [
+    "의",
+    "議",
+    "nghị"
+   ]
+  ],
+  "t": "B",
+  "vi": "cuộc họp",
+  "n": "Âm là “hội nghị”, nhưng 회의 dùng cho mọi cuộc họp, kể cả họp nhỏ trong nhóm.",
+  "ex": [
+   [
+    "오후 3시에 회의가 있습니다.",
+    "3 giờ chiều có cuộc họp."
+   ],
+   [
+    "회의실 예약했어요?",
+    "Đã đặt phòng họp chưa?"
+   ],
+   [
+    "회의 내용을 정리해서 보내 드릴게요.",
+    "Tôi sẽ tóm tắt nội dung cuộc họp rồi gửi anh/chị."
+   ],
+   [
+    "지금 회의 중이라서 이따가 전화할게요.",
+    "Tôi đang họp, lát nữa tôi gọi lại nhé."
+   ],
+   [
+    "화상 회의 링크 좀 보내 주세요.",
+    "Gửi giúp tôi link họp online nhé."
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "확인",
+  "s": [
+   [
+    "확",
+    "確",
+    "xác"
+   ],
+   [
+    "인",
+    "認",
+    "nhận"
+   ]
+  ],
+  "t": "A",
+  "vi": "xác nhận, kiểm tra lại",
+  "n": "확인 = xác nhận, và cũng dùng khi “kiểm tra lại” email, lịch, giấy tờ.",
+  "ex": [
+   [
+    "메일 확인 부탁드립니다.",
+    "Nhờ anh/chị kiểm tra email giúp ạ."
+   ],
+   [
+    "일정을 다시 확인해 주세요.",
+    "Hãy xác nhận lại lịch giúp tôi."
+   ],
+   [
+    "확인했습니다. 감사합니다.",
+    "Tôi đã xem rồi ạ. Cảm ơn anh/chị."
+   ],
+   [
+    "확인 후 다시 연락드리겠습니다.",
+    "Tôi kiểm tra xong sẽ liên lạc lại ạ."
+   ],
+   [
+    "본인 확인을 위해 신분증이 필요합니다.",
+    "Cần giấy tờ tùy thân để xác nhận danh tính."
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "제출",
+  "s": [
+   [
+    "제",
+    "提",
+    "đề"
+   ],
+   [
+    "출",
+    "出",
+    "xuất"
+   ]
+  ],
+  "t": "C",
+  "vi": "nộp",
+  "n": "Trong tiếng Việt, “đề xuất” là đưa ra ý kiến (tiếng Hàn là 제안). 제출 nghĩa là “nộp”.",
+  "ex": [
+   [
+    "보고서는 금요일까지 제출해 주세요.",
+    "Hãy nộp báo cáo trước thứ Sáu nhé."
+   ],
+   [
+    "서류를 아직 제출하지 않았어요.",
+    "Tôi vẫn chưa nộp giấy tờ."
+   ],
+   [
+    "제출 기한이 언제예요?",
+    "Hạn nộp là khi nào vậy?"
+   ],
+   [
+    "영수증은 회계팀에 제출하세요.",
+    "Hóa đơn thì nộp cho phòng kế toán nhé."
+   ],
+   [
+    "이미 온라인으로 제출했습니다.",
+    "Tôi đã nộp online rồi ạ."
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "진행",
+  "s": [
+   [
+    "진",
+    "進",
+    "tiến"
+   ],
+   [
+    "행",
+    "行",
+    "hành"
+   ]
+  ],
+  "t": "A",
+  "vi": "tiến hành",
+  "n": "진행하다 = tiến hành. Hay gặp: 진행 상황 = tình hình tiến độ.",
+  "ex": [
+   [
+    "프로젝트는 계획대로 진행되고 있습니다.",
+    "Dự án đang được tiến hành đúng kế hoạch."
+   ],
+   [
+    "오늘 회의는 제가 진행하겠습니다.",
+    "Cuộc họp hôm nay tôi sẽ chủ trì."
+   ],
+   [
+    "진행 상황을 공유해 주세요.",
+    "Hãy chia sẻ tình hình tiến độ nhé."
+   ],
+   [
+    "테스트는 내일부터 진행합니다.",
+    "Việc kiểm thử sẽ được tiến hành từ ngày mai."
+   ],
+   [
+    "지금 어디까지 진행됐어요?",
+    "Bây giờ đã làm đến đâu rồi?"
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "승인",
+  "s": [
+   [
+    "승",
+    "承",
+    "thừa"
+   ],
+   [
+    "인",
+    "認",
+    "nhận"
+   ]
+  ],
+  "t": "C",
+  "vi": "phê duyệt",
+  "n": "Trong tiếng Việt, “thừa nhận” là công nhận một điều gì đó. 승인 nghĩa là “phê duyệt”.",
+  "ex": [
+   [
+    "팀장님 승인이 필요합니다.",
+    "Cần trưởng nhóm phê duyệt."
+   ],
+   [
+    "휴가 신청이 승인됐어요.",
+    "Đơn xin nghỉ phép đã được duyệt rồi."
+   ],
+   [
+    "예산 승인을 기다리고 있습니다.",
+    "Đang chờ phê duyệt ngân sách."
+   ],
+   [
+    "승인 없이 진행하면 안 돼요.",
+    "Chưa được duyệt thì không được làm."
+   ],
+   [
+    "카드 결제 승인이 거절됐습니다.",
+    "Giao dịch thẻ đã bị từ chối."
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "일정",
+  "s": [
+   [
+    "일",
+    "日",
+    "nhật"
+   ],
+   [
+    "정",
+    "程",
+    "trình"
+   ]
+  ],
+  "t": "B",
+  "vi": "lịch trình, lịch",
+  "n": "Âm là “nhật trình”, nhưng người Việt nói “lịch trình” hoặc “lịch”.",
+  "ex": [
+   [
+    "다음 주 일정이 어떻게 되세요?",
+    "Lịch tuần sau của anh/chị thế nào ạ?"
+   ],
+   [
+    "일정이 바뀌면 바로 알려 주세요.",
+    "Lịch có thay đổi thì báo tôi ngay nhé."
+   ],
+   [
+    "출장 일정을 짜고 있어요.",
+    "Tôi đang lên lịch trình công tác."
+   ],
+   [
+    "이번 주는 일정이 너무 빡빡해요.",
+    "Tuần này lịch kín quá."
+   ],
+   [
+    "일정을 조정할 수 있을까요?",
+    "Có thể điều chỉnh lịch được không ạ?"
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "관리",
+  "s": [
+   [
+    "관",
+    "管",
+    "quản"
+   ],
+   [
+    "리",
+    "理",
+    "lý"
+   ]
+  ],
+  "t": "A",
+  "vi": "quản lý",
+  "n": "Giống hệt “quản lý”: dùng cho người, hệ thống, cả sức khỏe.",
+  "ex": [
+   [
+    "재고 관리가 제일 중요해요.",
+    "Quản lý tồn kho là quan trọng nhất."
+   ],
+   [
+    "일정 관리는 엑셀로 하고 있어요.",
+    "Tôi quản lý lịch bằng Excel."
+   ],
+   [
+    "이 시스템은 누가 관리해요?",
+    "Hệ thống này ai quản lý vậy?"
+   ],
+   [
+    "품질 관리팀에서 일하고 있습니다.",
+    "Tôi làm việc ở nhóm quản lý chất lượng."
+   ],
+   [
+    "요즘 건강 관리 잘하고 계세요?",
+    "Dạo này anh/chị có giữ gìn sức khỏe tốt không?"
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "검토",
+  "s": [
+   [
+    "검",
+    "檢",
+    "kiểm"
+   ],
+   [
+    "토",
+    "討",
+    "thảo"
+   ]
+  ],
+  "t": "C",
+  "vi": "xem xét, rà soát",
+  "n": "Trong tiếng Việt, “kiểm thảo” là tự kiểm điểm. 검토 nghĩa là “xem xét, rà soát”.",
+  "ex": [
+   [
+    "자료를 검토한 후에 답변드리겠습니다.",
+    "Tôi sẽ xem xét tài liệu rồi trả lời ạ."
+   ],
+   [
+    "계약서 검토 부탁드립니다.",
+    "Nhờ anh/chị xem giúp hợp đồng ạ."
+   ],
+   [
+    "그 의견은 긍정적으로 검토해 보겠습니다.",
+    "Ý kiến đó chúng tôi sẽ xem xét theo hướng tích cực."
+   ],
+   [
+    "검토 결과를 공유해 주세요.",
+    "Hãy chia sẻ kết quả rà soát nhé."
+   ],
+   [
+    "아직 검토 중입니다.",
+    "Vẫn đang xem xét ạ."
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "생산",
+  "s": [
+   [
+    "생",
+    "生",
+    "sinh"
+   ],
+   [
+    "산",
+    "産",
+    "sản"
+   ]
+  ],
+  "t": "C",
+  "vi": "sản xuất",
+  "n": "Trong tiếng Việt, “sinh sản” là đẻ con. 생산 nghĩa là “sản xuất”.",
+  "ex": [
+   [
+    "공장에서 하루에 천 개를 생산합니다.",
+    "Nhà máy sản xuất một nghìn cái mỗi ngày."
+   ],
+   [
+    "이번 달 생산량이 많이 늘었어요.",
+    "Sản lượng tháng này tăng nhiều."
+   ],
+   [
+    "생산 일정이 일주일 늦어졌어요.",
+    "Lịch sản xuất bị chậm một tuần."
+   ],
+   [
+    "생산 라인을 하나 더 늘릴 예정입니다.",
+    "Dự kiến sẽ thêm một dây chuyền sản xuất."
+   ],
+   [
+    "오후에 생산팀과 회의가 있어요.",
+    "Chiều nay tôi có cuộc họp với nhóm sản xuất."
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "담당",
+  "s": [
+   [
+    "담",
+    "擔",
+    "đảm"
+   ],
+   [
+    "당",
+    "當",
+    "đương"
+   ]
+  ],
+  "t": "B",
+  "vi": "phụ trách",
+  "n": "Âm là “đảm đương”, nghĩa gần giống, nhưng người Việt thường nói “phụ trách”. 담당자 = người phụ trách.",
+  "ex": [
+   [
+    "이 업무는 제가 담당하고 있습니다.",
+    "Tôi đang phụ trách công việc này."
+   ],
+   [
+    "담당자에게 연락해 주세요.",
+    "Hãy liên lạc với người phụ trách."
+   ],
+   [
+    "담당 부서가 어디예요?",
+    "Bộ phận phụ trách là bộ phận nào vậy?"
+   ],
+   [
+    "다음 달부터 영업을 담당하게 됐어요.",
+    "Từ tháng sau tôi sẽ phụ trách mảng kinh doanh."
+   ],
+   [
+    "담당이 바뀌었으니 다시 확인 부탁드립니다.",
+    "Người phụ trách đã đổi, nhờ anh/chị kiểm tra lại ạ."
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "검사",
+  "s": [
+   [
+    "검",
+    "檢",
+    "kiểm"
+   ],
+   [
+    "사",
+    "査",
+    "tra"
+   ]
+  ],
+  "t": "A",
+  "vi": "kiểm tra, xét nghiệm",
+  "n": "검사 = kiểm tra. Ở bệnh viện thì là “xét nghiệm”.",
+  "ex": [
+   [
+    "출하 전에 모든 제품을 검사합니다.",
+    "Mọi sản phẩm đều được kiểm tra trước khi xuất hàng."
+   ],
+   [
+    "품질 검사에서 불량이 발견됐습니다.",
+    "Đã phát hiện hàng lỗi khi kiểm tra chất lượng."
+   ],
+   [
+    "검사 결과는 다음 주에 나와요.",
+    "Kết quả kiểm tra sẽ có vào tuần sau."
+   ],
+   [
+    "혈액 검사 결과가 나왔어요.",
+    "Đã có kết quả xét nghiệm máu."
+   ],
+   [
+    "꼼꼼하게 검사해 주세요.",
+    "Hãy kiểm tra thật kỹ nhé."
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "출장",
+  "s": [
+   [
+    "출",
+    "出",
+    "xuất"
+   ],
+   [
+    "장",
+    "張",
+    "trương"
+   ]
+  ],
+  "t": "B",
+  "vi": "đi công tác",
+  "n": "Âm là “xuất trương”, nhưng người Việt nói “đi công tác”.",
+  "ex": [
+   [
+    "다음 주에 서울로 출장 가요.",
+    "Tuần sau tôi đi công tác Seoul."
+   ],
+   [
+    "팀장님은 지금 출장 중이세요.",
+    "Trưởng nhóm đang đi công tác."
+   ],
+   [
+    "출장비는 회사에서 지원합니다.",
+    "Chi phí công tác do công ty chi trả."
+   ],
+   [
+    "이번 출장은 3박 4일이에요.",
+    "Chuyến công tác lần này 4 ngày 3 đêm."
+   ],
+   [
+    "출장 보고서를 제출해 주세요.",
+    "Hãy nộp báo cáo công tác nhé."
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "개선",
+  "s": [
+   [
+    "개",
+    "改",
+    "cải"
+   ],
+   [
+    "선",
+    "善",
+    "thiện"
+   ]
+  ],
+  "t": "A",
+  "vi": "cải thiện",
+  "n": "Giống hệt “cải thiện”.",
+  "ex": [
+   [
+    "고객 의견을 반영해서 서비스를 개선했습니다.",
+    "Chúng tôi đã cải thiện dịch vụ dựa trên ý kiến khách hàng."
+   ],
+   [
+    "개선할 점이 있으면 말씀해 주세요.",
+    "Có điểm nào cần cải thiện thì cứ nói với tôi nhé."
+   ],
+   [
+    "업무 프로세스를 개선해야 합니다.",
+    "Cần cải thiện quy trình làm việc."
+   ],
+   [
+    "지난달보다 많이 개선됐네요.",
+    "So với tháng trước đã cải thiện nhiều rồi nhỉ."
+   ],
+   [
+    "내일까지 개선 방안을 정리해 주세요.",
+    "Hãy tổng hợp phương án cải thiện trước ngày mai nhé."
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "방문",
+  "s": [
+   [
+    "방",
+    "訪",
+    "phỏng"
+   ],
+   [
+    "문",
+    "問",
+    "vấn"
+   ]
+  ],
+  "t": "C",
+  "vi": "đến thăm",
+  "n": "Trong tiếng Việt, “phỏng vấn” là interview (tiếng Hàn là 면접). 방문 nghĩa là “đến thăm”.",
+  "ex": [
+   [
+    "다음 주에 한국 본사에서 방문할 예정입니다.",
+    "Tuần sau sẽ có người từ trụ sở chính Hàn Quốc sang thăm."
+   ],
+   [
+    "고객사를 방문해서 미팅했어요.",
+    "Tôi đã đến công ty khách hàng để họp."
+   ],
+   [
+    "방문 목적이 무엇입니까?",
+    "Mục đích chuyến đi của anh/chị là gì?"
+   ],
+   [
+    "언제 방문하시면 편하세요?",
+    "Khi nào anh/chị tiện ghé qua ạ?"
+   ],
+   [
+    "홈페이지 방문자 수가 늘었어요.",
+    "Lượng người truy cập trang web đã tăng."
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "책임",
+  "s": [
+   [
+    "책",
+    "責",
+    "trách"
+   ],
+   [
+    "임",
+    "任",
+    "nhiệm"
+   ]
+  ],
+  "t": "A",
+  "vi": "trách nhiệm",
+  "n": "Giống hệt “trách nhiệm”. 책임지다 = chịu trách nhiệm.",
+  "ex": [
+   [
+    "이 일은 제가 책임지겠습니다.",
+    "Việc này tôi sẽ chịu trách nhiệm."
+   ],
+   [
+    "이 프로젝트 책임자가 누구예요?",
+    "Người chịu trách nhiệm dự án này là ai vậy?"
+   ],
+   [
+    "책임감이 강한 사람이에요.",
+    "Là người có tinh thần trách nhiệm cao."
+   ],
+   [
+    "실수에 대한 책임은 팀 전체에 있습니다.",
+    "Trách nhiệm về sai sót thuộc về cả nhóm."
+   ],
+   [
+    "책임을 다른 사람에게 미루지 마세요.",
+    "Đừng đổ trách nhiệm cho người khác."
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "계약",
+  "s": [
+   [
+    "계",
+    "契",
+    "khế"
+   ],
+   [
+    "약",
+    "約",
+    "ước"
+   ]
+  ],
+  "t": "B",
+  "vi": "hợp đồng",
+  "n": "“Khế ước” nghe rất cổ. Người Việt nói “hợp đồng”. 계약서 = bản hợp đồng.",
+  "ex": [
+   [
+    "계약 기간은 1년입니다.",
+    "Thời hạn hợp đồng là 1 năm."
+   ],
+   [
+    "계약서에 서명해 주세요.",
+    "Xin hãy ký vào hợp đồng."
+   ],
+   [
+    "고객사와 계약을 맺었습니다.",
+    "Chúng tôi đã ký hợp đồng với công ty khách hàng."
+   ],
+   [
+    "계약 조건을 다시 확인해 봅시다.",
+    "Cùng kiểm tra lại điều kiện hợp đồng nhé."
+   ],
+   [
+    "계약이 다음 달에 끝나요.",
+    "Hợp đồng hết hạn vào tháng sau."
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "필요",
+  "s": [
+   [
+    "필",
+    "必",
+    "tất"
+   ],
+   [
+    "요",
+    "要",
+    "yếu"
+   ]
+  ],
+  "t": "C",
+  "vi": "cần, cần thiết",
+  "n": "Trong tiếng Việt, “tất yếu” là không tránh khỏi. 필요 chỉ là “cần, cần thiết”.",
+  "ex": [
+   [
+    "도움이 필요하면 언제든지 말하세요.",
+    "Cần giúp gì thì cứ nói bất cứ lúc nào nhé."
+   ],
+   [
+    "이 서류가 꼭 필요해요?",
+    "Giấy tờ này nhất định phải có à?"
+   ],
+   [
+    "필요한 물건은 미리 준비하세요.",
+    "Hãy chuẩn bị trước những đồ cần thiết."
+   ],
+   [
+    "인원이 한 명 더 필요합니다.",
+    "Cần thêm một người nữa."
+   ],
+   [
+    "필요 없으면 버려도 돼요.",
+    "Không cần thì vứt đi cũng được."
+   ]
+  ],
+  "reviewed": true
+ },
+ {
+  "k": "목표",
+  "s": [
+   [
+    "목",
+    "目",
+    "mục"
+   ],
+   [
+    "표",
+    "標",
+    "tiêu"
+   ]
+  ],
+  "t": "A",
+  "vi": "mục tiêu",
+  "n": "Giống hệt “mục tiêu”.",
+  "ex": [
+   [
+    "올해 목표는 매출 20% 증가입니다.",
+    "Mục tiêu năm nay là tăng doanh thu 20%."
+   ],
+   [
+    "이번 달 목표를 달성했어요!",
+    "Tháng này đạt mục tiêu rồi!"
+   ],
+   [
+    "목표를 너무 높게 잡은 것 같아요.",
+    "Hình như mình đặt mục tiêu cao quá."
+   ],
+   [
+    "팀 목표를 다시 정해 봅시다.",
+    "Chúng ta đặt lại mục tiêu của nhóm nhé."
+   ],
+   [
+    "제 목표는 TOPIK 4급이에요.",
+    "Mục tiêu của tôi là TOPIK cấp 4."
+   ]
+  ],
+  "reviewed": true
+ }
+]
