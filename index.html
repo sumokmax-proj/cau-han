@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cầu Hàn POC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&family=Noto+Sans+KR:wght@500;700&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday learning tool for a sceptical office worker: quick, clear, a little playful
+   IDEA a bridge: Korean syllable on top, its Hán character as a red seal, the Vietnamese reading below
+   PICTURE the bridge card of the current word, large, cables dropping from each syllable
+   COLOUR white ground, ink black, seal red, highlighter yellow for target words, ink blue for "same as Vietnamese"
+   TYPE Be Vietnam Pro for UI and Vietnamese, Noto Sans KR for Korean, Noto Serif TC for hanja
+   LAYOUT one 560px column on every screen; phone order: title, bridge, action; sticky progress in a session */
+:root{--bg:#fff;--ink:#141414;--mut:#5d5d5d;--line:#e3e3df;--card:#f3f3f0;--seal:#d7261e;--hl:#ffd400;--blue:#1f4fd8;--blueb:#e8eeff;--amb:#9a5700;--ambb:#fff1d6;--nob:#fde9e8;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#111214;--ink:#f1f1ef;--mut:#a7a7a3;--line:#2d2e31;--card:#1c1d20;--seal:#ff4b3e;--blue:#86a8ff;--blueb:#1b2547;--amb:#ffb547;--ambb:#3a2a10;--nob:#3d1715}}
+:root[data-theme=dark]{--bg:#111214;--ink:#f1f1ef;--mut:#a7a7a3;--line:#2d2e31;--card:#1c1d20;--seal:#ff4b3e;--blue:#86a8ff;--blueb:#1b2547;--amb:#ffb547;--ambb:#3a2a10;--nob:#3d1715;color-scheme:dark}
+:root[data-theme=light]{color-scheme:light}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 'Be Vietnam Pro',system-ui,sans-serif;overflow-x:clip;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+#app{max-width:560px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 48px max(16px,env(safe-area-inset-left))}
+.head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+h1{font:800 clamp(34px,9vw,44px)/1.05 'Be Vietnam Pro',sans-serif;letter-spacing:-.02em;margin:6px 0 4px}
+h2{font:800 24px/1.15 'Be Vietnam Pro',sans-serif;margin:0}
+h3{font:800 18px/1.2 'Be Vietnam Pro',sans-serif;margin:28px 0 6px}
+.tag{margin:0 0 18px;color:var(--mut)}
+.lang{min-width:52px;min-height:44px;border:2px solid var(--ink);border-radius:12px;background:var(--bg);font-weight:800}
+.kr,.kw,.kos,.kw2,.rk,.kro,.jamo{font-family:'Noto Sans KR',sans-serif}
+.bridge{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:12px;padding:22px 14px 18px;background:var(--card);border-radius:22px}
+.col{display:flex;flex-direction:column;align-items:center}
+.kos{font-weight:700;font-size:clamp(40px,12vw,60px);line-height:1}
+.cab{display:block;width:2px;height:16px;background:var(--ink);opacity:.35}
+.seal{width:clamp(52px,15vw,68px);height:clamp(52px,15vw,68px);display:grid;place-items:center;background:var(--seal);color:#fff;border-radius:10px;font:700 clamp(30px,9vw,40px)/1 'Noto Serif TC',serif;box-shadow:inset 0 -4px 0 rgba(0,0,0,.18)}
+.hvs{font-weight:800;font-size:clamp(20px,6vw,26px);line-height:1.1;text-align:center}
+.grow .cab{transform-origin:top;animation:drop .45s ease-out both}
+.grow .hvs{animation:fade .5s .25s both}
+@keyframes drop{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes fade{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.grow .cab,.grow .hvs{animation:none}}
+.hero{display:block;width:100%;margin:0 0 16px;padding:0;border:0;background:none;text-align:left}
+.cap{margin:10px 2px 0;font-size:17px}
+.kw2{font-weight:700;margin-right:4px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 0 18px}
+.st{padding:12px 4px;text-align:center}
+.st+.st{border-left:1px solid var(--line)}
+.st b{display:block;font-size:24px;line-height:1.1;font-weight:800;white-space:nowrap}
+.st span{display:block;font-size:13px;color:var(--mut);line-height:1.25;margin-top:2px}
+.btn{display:block;width:100%;min-height:54px;border:0;border-radius:14px;background:var(--ink);color:var(--bg);font-weight:800;font-size:18px;margin-top:14px}
+.btn.big{min-height:62px;font-size:20px;background:var(--seal);color:#fff}
+.btn2{display:block;width:100%;min-height:48px;border:2px solid var(--line);border-radius:14px;background:var(--bg);font-weight:700;margin-top:10px}
+.danger{color:var(--seal)}
+.sub{margin:8px 0 0;text-align:center;color:var(--mut);font-size:15px}
+.nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:22px}
+.nav button{min-height:48px;border:2px solid var(--line);border-radius:12px;background:var(--bg);font-weight:700;font-size:15px;line-height:1.2;padding:6px}
+.foot{margin-top:18px;font-size:13px;color:var(--mut);text-align:center}
+.none{font-size:18px;font-weight:700;text-align:center;margin:18px 0}
+.sbar{display:flex;align-items:center;gap:10px;position:sticky;top:0;background:var(--bg);padding:8px 0 10px;z-index:2}
+.x{width:44px;height:44px;border:0;background:var(--card);border-radius:12px;font-size:26px;line-height:1;flex:none}
+.prog{flex:1;height:8px;background:var(--card);border-radius:99px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--seal);border-radius:99px;transition:width .3s}
+.cnt{font-size:13px;color:var(--mut);white-space:nowrap}
+.spd{min-height:40px;min-width:52px;border:2px solid var(--line);border-radius:10px;background:var(--bg);font-weight:700;font-size:14px;flex:none}
+.word{display:flex;align-items:center;gap:12px;margin:14px 0 6px}
+.kw{font-weight:700;font-size:clamp(46px,14vw,64px);line-height:1.05}
+.spk{flex:none;width:44px;height:44px;border-radius:50%;border:0;background:var(--ink);color:var(--bg);display:grid;place-items:center}
+.q{font-weight:700;font-size:18px;margin:10px 0}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.opt{min-height:58px;padding:10px 12px;border:2px solid var(--line);border-radius:14px;background:var(--bg);font-weight:700;font-size:18px;line-height:1.25}
+.opt.kro{font-size:22px}
+.opt.ok{border-color:var(--blue);background:var(--blueb)}
+.opt.no{border-color:var(--seal);background:var(--nob)}
+.opt:disabled{cursor:default}
+.opt:not(:disabled):active{transform:scale(.98)}
+.link{display:block;margin:12px auto 0;border:0;background:none;color:var(--mut);text-decoration:underline;min-height:44px;font-size:15px}
+.res{font-weight:800;font-size:18px;margin:6px 0 12px}
+.res.good{color:var(--blue)}
+.res.bad{color:var(--seal)}
+.meta{margin:14px 2px 0}
+.badge{display:inline-block;padding:5px 12px;border-radius:99px;font-weight:800;font-size:14px}
+.bA{background:var(--blueb);color:var(--blue)}
+.bB{background:var(--ambb);color:var(--amb)}
+.bC{background:var(--seal);color:#fff}
+.mean{font-size:20px;margin:10px 0 4px}
+.lab{display:block;font-size:13px;color:var(--mut);font-weight:600;margin-bottom:2px}
+.mut{color:var(--mut);font-size:16px}
+.note{margin:6px 0 0;font-size:16px}
+.fam{margin:8px 0 0;font-size:15px}
+.fam b{font-family:'Noto Serif TC',serif;color:var(--seal)}
+.sents{margin-top:18px;border-top:1px solid var(--line);padding-top:12px}
+.sent{display:flex;gap:12px;align-items:flex-start;padding:10px 0}
+.sent+.sent{border-top:1px dashed var(--line)}
+.sent .spk{width:40px;height:40px}
+.kr{font-size:19px;line-height:1.5;font-weight:500}
+.big .kr{font-size:21px}
+.vi{color:var(--mut);font-size:16px;line-height:1.45}
+mark{background:var(--hl);color:#111;border-radius:3px;padding:0 2px}
+.blank{display:inline-block;min-width:3.2em;border-bottom:3px solid var(--ink);margin:0 2px}
+.fb{padding:12px 14px;border-radius:14px;margin-top:12px;font-size:16px}
+.fb.good{background:var(--blueb)}
+.fb.bad{background:var(--nob)}
+.tagr{display:inline-block;font-size:13px;font-weight:700;color:var(--mut);margin:10px 0 0}
+.chips,.rate{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.chip{min-height:44px;padding:0 16px;border:2px solid var(--line);border-radius:99px;background:var(--bg);font-weight:700}
+.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.list{list-style:none;margin:0;padding:0}
+.row{width:100%;display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"k h d" "k v d";column-gap:14px;align-items:center;text-align:left;padding:12px 4px;border:0;border-bottom:1px solid var(--line);background:none}
+.rk{grid-area:k;font-weight:700;font-size:22px}
+.rh{grid-area:h;font-size:14px;color:var(--mut)}
+.rv{grid-area:v;font-weight:600}
+.dot{grid-area:d;width:14px;height:14px;border-radius:50%;border:2px solid var(--line)}
+.dot.on.dA{background:var(--blue);border-color:var(--blue)}
+.dot.on.dB{background:var(--amb);border-color:var(--amb)}
+.dot.on.dC{background:var(--seal);border-color:var(--seal)}
+.rr{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;padding:14px 0;border-bottom:1px solid var(--line);align-items:center}
+.jamo{font-weight:700;font-size:34px;line-height:1;display:grid;place-items:center;height:56px;border-radius:12px;background:var(--card)}
+.end{font-weight:800;font-size:18px}
+.exs{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.ex{border:1px solid var(--line);border-radius:10px;padding:4px 10px;background:var(--bg);font-size:15px;min-height:40px}
+.ex .h{font-family:'Noto Serif TC',serif;color:var(--seal);margin:0 4px}
+textarea{width:100%;font:16px/1.5 'Be Vietnam Pro',sans-serif;padding:12px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);resize:vertical}
+.okmsg{color:var(--blue);font-weight:700}
+.row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.row2 .btn2{margin-top:10px}
+.done h2{font-size:34px;margin:18px 0 6px}
+.trapl{list-style:none;padding:0;margin:8px 0}
+.trapl li{padding:8px 0;border-bottom:1px solid var(--line)}
+@media(max-width:380px){.opt{font-size:16px}.st b{font-size:20px}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+{
+/* ---------- content: 20 workplace Sino-Korean words. t: A same / B said differently / C false friend ---------- */
+const D=[
+{k:'정보',s:[['정','情','tình'],['보','報','báo']],t:'C',vi:'thông tin',n:'Trong tiếng Việt, “tình báo” là gián điệp. Còn 정보 chỉ là “thông tin”.',ex:[
+['자세한 정보는 메일로 보내 드릴게요.','Thông tin chi tiết tôi sẽ gửi qua email.'],
+['고객 정보는 외부에 공유하면 안 돼요.','Không được chia sẻ thông tin khách hàng ra bên ngoài.'],
+['이 정보가 맞는지 확인해 주세요.','Hãy kiểm tra giúp xem thông tin này có đúng không.'],
+['최신 정보로 업데이트했습니다.','Tôi đã cập nhật thông tin mới nhất.'],
+['개인 정보 보호가 정말 중요해요.','Bảo vệ thông tin cá nhân thật sự rất quan trọng.']]},
+{k:'처리',s:[['처','處','xử'],['리','理','lý']],t:'A',vi:'xử lý',n:'Dùng y như tiếng Việt: 처리하다 = xử lý.',ex:[
+['이 문제는 오늘 안에 처리해 주세요.','Hãy xử lý vấn đề này trong hôm nay nhé.'],
+['요청하신 건은 이미 처리했습니다.','Việc anh/chị yêu cầu tôi đã xử lý xong rồi ạ.'],
+['처리 속도가 너무 느려요.','Tốc độ xử lý chậm quá.'],
+['서류 처리에 3일 정도 걸립니다.','Xử lý giấy tờ mất khoảng 3 ngày.'],
+['이 건은 누가 처리하고 있어요?','Việc này ai đang xử lý vậy?']]},
+{k:'회의',s:[['회','會','hội'],['의','議','nghị']],t:'B',vi:'cuộc họp',n:'Âm là “hội nghị”, nhưng 회의 dùng cho mọi cuộc họp, kể cả họp nhỏ trong nhóm.',ex:[
+['오후 3시에 회의가 있습니다.','3 giờ chiều có cuộc họp.'],
+['회의실 예약했어요?','Đã đặt phòng họp chưa?'],
+['회의 내용을 정리해서 보내 드릴게요.','Tôi sẽ tóm tắt nội dung cuộc họp rồi gửi anh/chị.'],
+['지금 회의 중이라서 이따가 전화할게요.','Tôi đang họp, lát nữa tôi gọi lại nhé.'],
+['화상 회의 링크 좀 보내 주세요.','Gửi giúp tôi link họp online nhé.']]},
+{k:'확인',s:[['확','確','xác'],['인','認','nhận']],t:'A',vi:'xác nhận, kiểm tra lại',n:'확인 = xác nhận, và cũng dùng khi “kiểm tra lại” email, lịch, giấy tờ.',ex:[
+['메일 확인 부탁드립니다.','Nhờ anh/chị kiểm tra email giúp ạ.'],
+['일정을 다시 확인해 주세요.','Hãy xác nhận lại lịch giúp tôi.'],
+['확인했습니다. 감사합니다.','Tôi đã xem rồi ạ. Cảm ơn anh/chị.'],
+['확인 후 다시 연락드리겠습니다.','Tôi kiểm tra xong sẽ liên lạc lại ạ.'],
+['본인 확인을 위해 신분증이 필요합니다.','Cần giấy tờ tùy thân để xác nhận danh tính.']]},
+{k:'제출',s:[['제','提','đề'],['출','出','xuất']],t:'C',vi:'nộp',n:'Trong tiếng Việt, “đề xuất” là đưa ra ý kiến (tiếng Hàn là 제안). 제출 nghĩa là “nộp”.',ex:[
+['보고서는 금요일까지 제출해 주세요.','Hãy nộp báo cáo trước thứ Sáu nhé.'],
+['서류를 아직 제출하지 않았어요.','Tôi vẫn chưa nộp giấy tờ.'],
+['제출 기한이 언제예요?','Hạn nộp là khi nào vậy?'],
+['영수증은 회계팀에 제출하세요.','Hóa đơn thì nộp cho phòng kế toán nhé.'],
+['이미 온라인으로 제출했습니다.','Tôi đã nộp online rồi ạ.']]},
+{k:'진행',s:[['진','進','tiến'],['행','行','hành']],t:'A',vi:'tiến hành',n:'진행하다 = tiến hành. Hay gặp: 진행 상황 = tình hình tiến độ.',ex:[
+['프로젝트는 계획대로 진행되고 있습니다.','Dự án đang được tiến hành đúng kế hoạch.'],
+['오늘 회의는 제가 진행하겠습니다.','Cuộc họp hôm nay tôi sẽ chủ trì.'],
+['진행 상황을 공유해 주세요.','Hãy chia sẻ tình hình tiến độ nhé.'],
+['테스트는 내일부터 진행합니다.','Việc kiểm thử sẽ được tiến hành từ ngày mai.'],
+['지금 어디까지 진행됐어요?','Bây giờ đã làm đến đâu rồi?']]},
+{k:'승인',s:[['승','承','thừa'],['인','認','nhận']],t:'C',vi:'phê duyệt',n:'Trong tiếng Việt, “thừa nhận” là công nhận một điều gì đó. 승인 nghĩa là “phê duyệt”.',ex:[
+['팀장님 승인이 필요합니다.','Cần trưởng nhóm phê duyệt.'],
+['휴가 신청이 승인됐어요.','Đơn xin nghỉ phép đã được duyệt rồi.'],
+['예산 승인을 기다리고 있습니다.','Đang chờ phê duyệt ngân sách.'],
+['승인 없이 진행하면 안 돼요.','Chưa được duyệt thì không được làm.'],
+['카드 결제 승인이 거절됐습니다.','Giao dịch thẻ đã bị từ chối.']]},
+{k:'일정',s:[['일','日','nhật'],['정','程','trình']],t:'B',vi:'lịch trình, lịch',n:'Âm là “nhật trình”, nhưng người Việt nói “lịch trình” hoặc “lịch”.',ex:[
+['다음 주 일정이 어떻게 되세요?','Lịch tuần sau của anh/chị thế nào ạ?'],
+['일정이 바뀌면 바로 알려 주세요.','Lịch có thay đổi thì báo tôi ngay nhé.'],
+['출장 일정을 짜고 있어요.','Tôi đang lên lịch trình công tác.'],
+['이번 주는 일정이 너무 빡빡해요.','Tuần này lịch kín quá.'],
+['일정을 조정할 수 있을까요?','Có thể điều chỉnh lịch được không ạ?']]},
+{k:'관리',s:[['관','管','quản'],['리','理','lý']],t:'A',vi:'quản lý',n:'Giống hệt “quản lý”: dùng cho người, hệ thống, cả sức khỏe.',ex:[
+['재고 관리가 제일 중요해요.','Quản lý tồn kho là quan trọng nhất.'],
+['일정 관리는 엑셀로 하고 있어요.','Tôi quản lý lịch bằng Excel.'],
+['이 시스템은 누가 관리해요?','Hệ thống này ai quản lý vậy?'],
+['품질 관리팀에서 일하고 있습니다.','Tôi làm việc ở nhóm quản lý chất lượng.'],
+['요즘 건강 관리 잘하고 계세요?','Dạo này anh/chị có giữ gìn sức khỏe tốt không?']]},
+{k:'검토',s:[['검','檢','kiểm'],['토','討','thảo']],t:'C',vi:'xem xét, rà soát',n:'Trong tiếng Việt, “kiểm thảo” là tự kiểm điểm. 검토 nghĩa là “xem xét, rà soát”.',ex:[
+['자료를 검토한 후에 답변드리겠습니다.','Tôi sẽ xem xét tài liệu rồi trả lời ạ.'],
+['계약서 검토 부탁드립니다.','Nhờ anh/chị xem giúp hợp đồng ạ.'],
+['그 의견은 긍정적으로 검토해 보겠습니다.','Ý kiến đó chúng tôi sẽ xem xét theo hướng tích cực.'],
+['검토 결과를 공유해 주세요.','Hãy chia sẻ kết quả rà soát nhé.'],
+['아직 검토 중입니다.','Vẫn đang xem xét ạ.']]},
+{k:'생산',s:[['생','生','sinh'],['산','産','sản']],t:'C',vi:'sản xuất',n:'Trong tiếng Việt, “sinh sản” là đẻ con. 생산 nghĩa là “sản xuất”.',ex:[
+['공장에서 하루에 천 개를 생산합니다.','Nhà máy sản xuất một nghìn cái mỗi ngày.'],
+['이번 달 생산량이 많이 늘었어요.','Sản lượng tháng này tăng nhiều.'],
+['생산 일정이 일주일 늦어졌어요.','Lịch sản xuất bị chậm một tuần.'],
+['생산 라인을 하나 더 늘릴 예정입니다.','Dự kiến sẽ thêm một dây chuyền sản xuất.'],
+['오후에 생산팀과 회의가 있어요.','Chiều nay tôi có cuộc họp với nhóm sản xuất.']]},
+{k:'담당',s:[['담','擔','đảm'],['당','當','đương']],t:'B',vi:'phụ trách',n:'Âm là “đảm đương”, nghĩa gần giống, nhưng người Việt thường nói “phụ trách”. 담당자 = người phụ trách.',ex:[
+['이 업무는 제가 담당하고 있습니다.','Tôi đang phụ trách công việc này.'],
+['담당자에게 연락해 주세요.','Hãy liên lạc với người phụ trách.'],
+['담당 부서가 어디예요?','Bộ phận phụ trách là bộ phận nào vậy?'],
+['다음 달부터 영업을 담당하게 됐어요.','Từ tháng sau tôi sẽ phụ trách mảng kinh doanh.'],
+['담당이 바뀌었으니 다시 확인 부탁드립니다.','Người phụ trách đã đổi, nhờ anh/chị kiểm tra lại ạ.']]},
+{k:'검사',s:[['검','檢','kiểm'],['사','査','tra']],t:'A',vi:'kiểm tra, xét nghiệm',n:'검사 = kiểm tra. Ở bệnh viện thì là “xét nghiệm”.',ex:[
+['출하 전에 모든 제품을 검사합니다.','Mọi sản phẩm đều được kiểm tra trước khi xuất hàng.'],
+['품질 검사에서 불량이 발견됐습니다.','Đã phát hiện hàng lỗi khi kiểm tra chất lượng.'],
+['검사 결과는 다음 주에 나와요.','Kết quả kiểm tra sẽ có vào tuần sau.'],
+['혈액 검사 결과가 나왔어요.','Đã có kết quả xét nghiệm máu.'],
+['꼼꼼하게 검사해 주세요.','Hãy kiểm tra thật kỹ nhé.']]},
+{k:'출장',s:[['출','出','xuất'],['장','張','trương']],t:'B',vi:'đi công tác',n:'Âm là “xuất trương”, nhưng người Việt nói “đi công tác”.',ex:[
+['다음 주에 서울로 출장 가요.','Tuần sau tôi đi công tác Seoul.'],
+['팀장님은 지금 출장 중이세요.','Trưởng nhóm đang đi công tác.'],
+['출장비는 회사에서 지원합니다.','Chi phí công tác do công ty chi trả.'],
+['이번 출장은 3박 4일이에요.','Chuyến công tác lần này 4 ngày 3 đêm.'],
+['출장 보고서를 제출해 주세요.','Hãy nộp báo cáo công tác nhé.']]},
+{k:'개선',s:[['개','改','cải'],['선','善','thiện']],t:'A',vi:'cải thiện',n:'Giống hệt “cải thiện”.',ex:[
+['고객 의견을 반영해서 서비스를 개선했습니다.','Chúng tôi đã cải thiện dịch vụ dựa trên ý kiến khách hàng.'],
+['개선할 점이 있으면 말씀해 주세요.','Có điểm nào cần cải thiện thì cứ nói với tôi nhé.'],
+['업무 프로세스를 개선해야 합니다.','Cần cải thiện quy trình làm việc.'],
+['지난달보다 많이 개선됐네요.','So với tháng trước đã cải thiện nhiều rồi nhỉ.'],
+['내일까지 개선 방안을 정리해 주세요.','Hãy tổng hợp phương án cải thiện trước ngày mai nhé.']]},
+{k:'방문',s:[['방','訪','phỏng'],['문','問','vấn']],t:'C',vi:'đến thăm',n:'Trong tiếng Việt, “phỏng vấn” là interview (tiếng Hàn là 면접). 방문 nghĩa là “đến thăm”.',ex:[
+['다음 주에 한국 본사에서 방문할 예정입니다.','Tuần sau sẽ có người từ trụ sở chính Hàn Quốc sang thăm.'],
+['고객사를 방문해서 미팅했어요.','Tôi đã đến công ty khách hàng để họp.'],
+['방문 목적이 무엇입니까?','Mục đích chuyến đi của anh/chị là gì?'],
+['언제 방문하시면 편하세요?','Khi nào anh/chị tiện ghé qua ạ?'],
+['홈페이지 방문자 수가 늘었어요.','Lượng người truy cập trang web đã tăng.']]},
+{k:'책임',s:[['책','責','trách'],['임','任','nhiệm']],t:'A',vi:'trách nhiệm',n:'Giống hệt “trách nhiệm”. 책임지다 = chịu trách nhiệm.',ex:[
+['이 일은 제가 책임지겠습니다.','Việc này tôi sẽ chịu trách nhiệm.'],
+['이 프로젝트 책임자가 누구예요?','Người chịu trách nhiệm dự án này là ai vậy?'],
+['책임감이 강한 사람이에요.','Là người có tinh thần trách nhiệm cao.'],
+['실수에 대한 책임은 팀 전체에 있습니다.','Trách nhiệm về sai sót thuộc về cả nhóm.'],
+['책임을 다른 사람에게 미루지 마세요.','Đừng đổ trách nhiệm cho người khác.']]},
+{k:'계약',s:[['계','契','khế'],['약','約','ước']],t:'B',vi:'hợp đồng',n:'“Khế ước” nghe rất cổ. Người Việt nói “hợp đồng”. 계약서 = bản hợp đồng.',ex:[
+['계약 기간은 1년입니다.','Thời hạn hợp đồng là 1 năm.'],
+['계약서에 서명해 주세요.','Xin hãy ký vào hợp đồng.'],
+['고객사와 계약을 맺었습니다.','Chúng tôi đã ký hợp đồng với công ty khách hàng.'],
+['계약 조건을 다시 확인해 봅시다.','Cùng kiểm tra lại điều kiện hợp đồng nhé.'],
+['계약이 다음 달에 끝나요.','Hợp đồng hết hạn vào tháng sau.']]},
+{k:'필요',s:[['필','必','tất'],['요','要','yếu']],t:'C',vi:'cần, cần thiết',n:'Trong tiếng Việt, “tất yếu” là không tránh khỏi. 필요 chỉ là “cần, cần thiết”.',ex:[
+['도움이 필요하면 언제든지 말하세요.','Cần giúp gì thì cứ nói bất cứ lúc nào nhé.'],
+['이 서류가 꼭 필요해요?','Giấy tờ này nhất định phải có à?'],
+['필요한 물건은 미리 준비하세요.','Hãy chuẩn bị trước những đồ cần thiết.'],
+['인원이 한 명 더 필요합니다.','Cần thêm một người nữa.'],
+['필요 없으면 버려도 돼요.','Không cần thì vứt đi cũng được.']]},
+{k:'목표',s:[['목','目','mục'],['표','標','tiêu']],t:'A',vi:'mục tiêu',n:'Giống hệt “mục tiêu”.',ex:[
+['올해 목표는 매출 20% 증가입니다.','Mục tiêu năm nay là tăng doanh thu 20%.'],
+['이번 달 목표를 달성했어요!','Tháng này đạt mục tiêu rồi!'],
+['목표를 너무 높게 잡은 것 같아요.','Hình như mình đặt mục tiêu cao quá.'],
+['팀 목표를 다시 정해 봅시다.','Chúng ta đặt lại mục tiêu của nhóm nhé.'],
+['제 목표는 TOPIK 4급이에요.','Mục tiêu của tôi là TOPIK cấp 4.']]}
+];
+const RULES=[
+['ㄱ','-c, -ch',[['확','確','xác'],['책','責','trách'],['목','目','mục'],['약','約','ước']]],
+['ㄹ','-t',[['출','出','xuất'],['필','必','tất'],['일','日','nhật']]],
+['ㅂ','-p',[['법','法','pháp'],['업','業','nghiệp']]],
+['ㅁ','-m',[['담','擔','đảm'],['임','任','nhiệm'],['검','檢','kiểm']]],
+['ㄴ','-n',[['진','進','tiến'],['인','認','nhận'],['산','産','sản'],['관','管','quản']]],
+['ㅇ','-ng, -nh',[['생','生','sinh'],['행','行','hành'],['정','情','tình'],['장','張','trương']]]
+];
+const SIM=[['확인','검사','검토']];
+const T={vi:{
+tagline:'Từ Hán Hàn cho người làm ở công ty Hàn Quốc',start:'Bắt đầu hôm nay',startSub:'{n} từ mới · {r} từ cần ôn · khoảng 3 phút',
+learned:'Đã học',due:'Cần ôn',hanja:'Chữ Hán đã gặp',traps:'Bẫy đã gỡ',book:'Sổ từ',rules:'Quy tắc âm cuối',feedback:'Góp ý',
+guessQ:'Âm Hán Việt của từ này là gì?',know:'Từ này tôi biết rồi',knownOk:'Đã đánh dấu là từ bạn biết. Xem lại cây cầu nhé:',
+typeA:'Giống tiếng Việt',typeB:'Âm giống, người Việt nói khác',typeC:'Bẫy! Nghĩa khác hẳn',meaning:'Nghĩa',hvSays:'âm Hán Việt',
+real:'Câu dùng thực tế',more:'Thêm câu ví dụ',next:'Tiếp',listen:'Nghe',qMean:'Từ tô vàng nghĩa là gì?',qCloze:'Chọn từ đúng cho chỗ trống',
+correct:'Đúng rồi!',wrong:'Chưa đúng.',trapHit:'Dính bẫy rồi!',resOk:'Chính xác! {k} = {hv}',resNo:'Chưa đúng. {k} đọc là “{hv}”.',review:'Ôn tập',
+done:'Xong rồi!',doneSum:'{n} từ mới · {r} từ ôn · đúng {ok}/{all} câu',trapsToday:'Bẫy hôm nay',howToday:'Hôm nay thấy thế nào?',
+r1:'Chán',r2:'Bình thường',r3:'Hay, có ích',fbPh:'Muốn góp ý gì thêm? (không bắt buộc)',saveFb:'Lưu góp ý',thanks:'Cảm ơn! Đã lưu.',
+home:'Về trang chính',learnMore:'Học thêm 5 từ',nothing:'Hôm nay xong hết rồi. Mai quay lại ôn nhé!',
+voiceNote:'Giọng đọc máy (tạm thời), sẽ thay bằng giọng người Hàn thật',noVoice:'Thiết bị này chưa có giọng đọc tiếng Hàn',
+sample:'Bản thử nghiệm · 20 từ',sameRoot:'Cùng gốc',fall:'Tất cả',fA:'Giống',fB:'Nói khác',fC:'Bẫy',
+teaseA:'Âm là “{hv}”. Bạn đoán được nghĩa không?',teaseB:'Âm là “{hv}”, nhưng người Hàn dùng nó thế nào?',teaseC:'Nghe như “{hv}”… nhưng có đúng nghĩa đó không?',
+rulesIntro:'Phụ âm cuối (받침) của từ Hán Hàn khớp khá đều với âm cuối Hán Việt. Nắm 6 quy tắc này, bạn đoán được rất nhiều từ mới.',
+rulesEx:'Có ngoại lệ, ví dụ 승 承 → thừa. Chạm vào ví dụ để nghe.',fbAsk:'Điều gì hay, điều gì chán? Cứ nói thẳng.',
+report:'Báo cáo cho Max',reportHint:'Sao chép đoạn này rồi gửi qua Zalo.',copy:'Sao chép báo cáo',copied:'Đã sao chép!',
+testTools:'Công cụ thử nghiệm',testDue:'Ôn ngay tất cả từ đã học',testDone:'Tất cả từ đã học đều đến hạn ôn.',
+reset:'Xóa tiến độ',resetSure:'Chạm lần nữa để xóa',resetDone:'Đã xóa tiến độ.',close:'Đóng',back:'Quay lại'
+},ko:{
+tagline:'한국 회사에 다니는 베트남인을 위한 한자어',start:'오늘 학습 시작',startSub:'새 단어 {n} · 복습 {r} · 약 3분',
+learned:'학습',due:'복습 대기',hanja:'만난 한자',traps:'피한 함정',book:'단어장',rules:'받침 규칙',feedback:'피드백',
+guessQ:'이 단어의 베트남 한자음(Hán Việt)은?',know:'이미 아는 단어예요',knownOk:'아는 단어로 표시했어요. 연결만 다시 보세요:',
+typeA:'베트남어와 같음',typeB:'음은 같지만 다른 말을 씀',typeC:'함정! 뜻이 다름',meaning:'뜻(베트남어)',hvSays:'베트남 한자음',
+real:'실생활 문장',more:'예문 더 보기',next:'다음',listen:'듣기',qMean:'노란색 단어의 뜻은?',qCloze:'빈칸에 맞는 단어는?',
+correct:'정답!',wrong:'오답.',trapHit:'함정에 걸렸어요!',resOk:'정답! {k} = {hv}',resNo:'오답. {k}의 음은 “{hv}”.',review:'복습',
+done:'완료!',doneSum:'새 단어 {n} · 복습 {r} · 정답 {ok}/{all}',trapsToday:'오늘의 함정',howToday:'오늘 어땠어요?',
+r1:'지루함',r2:'보통',r3:'유익함',fbPh:'추가 의견 (선택)',saveFb:'의견 저장',thanks:'저장했어요. 고마워요!',
+home:'홈으로',learnMore:'5단어 더 학습',nothing:'오늘 학습을 모두 마쳤어요. 내일 복습하러 오세요!',
+voiceNote:'기계 음성(임시), 실제 한국인 녹음으로 교체 예정',noVoice:'이 기기에는 한국어 음성이 없어요',
+sample:'시험판 · 20단어',sameRoot:'같은 한자',fall:'전체',fA:'같음',fB:'다른 말',fC:'함정',
+teaseA:'음은 “{hv}”. 뜻을 맞힐 수 있을까요?',teaseB:'음은 “{hv}”. 한국인은 어떻게 쓸까요?',teaseC:'“{hv}”처럼 들리지만… 정말 그 뜻일까요?',
+rulesIntro:'한자어 받침은 베트남 한자음의 끝소리와 규칙적으로 대응해요. 이 6개 규칙을 알면 처음 보는 단어도 짐작할 수 있어요.',
+rulesEx:'예외도 있어요. 예: 승 承 → thừa. 예시를 누르면 들을 수 있어요.',fbAsk:'좋았던 점, 지루했던 점을 솔직하게 적어 주세요.',
+report:'Max에게 보낼 리포트',reportHint:'복사해서 Zalo로 보내면 돼요.',copy:'리포트 복사',copied:'복사됨!',
+testTools:'테스트 도구',testDue:'학습한 단어 지금 복습하기',testDone:'학습한 단어를 모두 복습 대상으로 바꿨어요.',
+reset:'진도 초기화',resetSure:'한 번 더 누르면 초기화',resetDone:'진도를 초기화했어요.',close:'닫기',back:'뒤로'
+}};
+const INT=[0,1,3,7,14,30],DAY=864e5,KEY='cauhan-poc-v1';
+const SPK='<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a4.5 4.5 0 0 1 0 7M18.5 6a8 8 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
+
+/* ---------- state ---------- */
+let st={ui:'vi',rate:0.9,cards:{},log:[],fb:[]};
+try{const raw=localStorage.getItem(KEY);if(raw)st=Object.assign(st,JSON.parse(raw));}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}};
+const byK={};
+D.forEach((d,i)=>{d.i=i;d.hv=d.s.map(x=>x[2]).join(' ');d.hj=d.s.map(x=>x[1]).join('');byK[d.k]=d;});
+const t=(key,v)=>{let s=(T[st.ui]&&T[st.ui][key])||T.vi[key]||key;if(v)for(const n in v)s=s.split('{'+n+'}').join(v[n]);return s;};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const card=k=>st.cards[k]||(st.cards[k]={seen:false,stage:0,due:0,ok:0,no:0,known:false});
+const seen=k=>!!(st.cards[k]&&st.cards[k].seen);
+const logE=(e,k,ok)=>{st.log.push({t:Date.now(),e,k:k||null,ok:ok===undefined?null:ok});if(st.log.length>800)st.log=st.log.slice(-800);};
+
+/* ---------- speech ---------- */
+const synth=('speechSynthesis' in window)?window.speechSynthesis:null;
+let koVoice=null;
+const pickVoice=()=>{try{const vs=synth.getVoices();koVoice=vs.find(v=>/^ko/i.test(v.lang))||null;}catch(e){}};
+if(synth){pickVoice();try{synth.addEventListener('voiceschanged',pickVoice);}catch(e){}}
+const say=text=>{if(!synth)return;try{synth.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ko-KR';if(koVoice)u.voice=koVoice;u.rate=st.rate;synth.speak(u);}catch(e){}};
+
+/* ---------- question building ---------- */
+const simOf=k=>SIM.find(g=>g.includes(k))||[k];
+const others=d=>shuf(D.filter(x=>!simOf(d.k).includes(x.k)));
+const hvOpts=d=>{const share=shuf(D.filter(x=>x.k!==d.k&&x.s.some(a=>d.s.some(b=>a[2]===b[2]))));let o=share.slice(0,1);shuf(D.filter(x=>x.k!==d.k&&!o.includes(x))).forEach(x=>{if(o.length<3)o.push(x);});return shuf([d.hv].concat(o.map(x=>x.hv)));};
+const meanOpts=d=>{const o=[d.vi];if(d.t==='C')o.push(d.hv);others(d).forEach(x=>{if(o.length<4&&!o.includes(x.vi))o.push(x.vi);});return shuf(o);};
+const clozeOpts=d=>{const o=[d.k];others(d).forEach(x=>{if(o.length<4)o.push(x.k);});return shuf(o);};
+const mkQuiz=(d,rev)=>{const mode=Math.random()<.5?'mean':'cloze';return{type:'quiz',k:d.k,rev,mode,opts:mode==='mean'?meanOpts(d):clozeOpts(d),ans:mode==='mean'?d.vi:d.k,pick:-1};};
+
+/* ---------- session ---------- */
+let scr='home',ses=null,bookF='all',openK=null,resetArm=false,fbMsg='',draft='';
+const counts=()=>{const now=Date.now();let due=0,fresh=0,learned=0;D.forEach(d=>{if(seen(d.k)){learned++;if(st.cards[d.k].due<=now)due++;}else fresh++;});return{due,fresh:Math.min(fresh,5),freshAll:fresh,learned};};
+const newSession=n=>{const now=Date.now();
+const due=D.filter(d=>seen(d.k)&&st.cards[d.k].due<=now).sort((a,b)=>st.cards[a.k].due-st.cards[b.k].due).slice(0,15);
+const fresh=D.filter(d=>!seen(d.k)).slice(0,n);const q=[];
+due.forEach(d=>q.push(mkQuiz(d,true)));
+fresh.forEach(d=>q.push({type:'learn',k:d.k,phase:'guess',opts:hvOpts(d),pick:-1,more:0}));
+shuf(fresh).forEach(d=>q.push(mkQuiz(d,false)));
+ses={q,i:0,ok:0,n:0,nNew:fresh.length,nRev:due.length,traps:[],rated:0,fbIdx:null};
+scr=q.length?'ses':'home';logE('start');save();};
+const cur=()=>ses&&ses.q[ses.i];
+const speakCur=()=>{const it=cur();if(!it)return;const d=byK[it.k];if(it.type==='learn')say(d.k);else if(it.mode==='mean')say(d.ex[0][0]);};
+const learnPick=i=>{const it=cur();if(!it||it.phase!=='guess')return;const d=byK[it.k];it.pick=i;it.ok=it.opts[i]===d.hv;it.phase='reveal';
+const c=card(it.k);c.seen=true;c.stage=0;c.due=Date.now();logE('learn',it.k,it.ok);save();};
+const learnKnow=()=>{const it=cur();if(!it||it.phase!=='guess')return;it.known=true;it.phase='reveal';
+const c=card(it.k);c.seen=true;c.known=true;c.stage=4;c.due=Date.now()+INT[4]*DAY;
+ses.q=ses.q.filter((x,j)=>!(j>ses.i&&x.type==='quiz'&&x.k===it.k&&!x.rev));logE('known',it.k);save();};
+const quizPick=i=>{const it=cur();if(!it||it.pick>=0)return;const d=byK[it.k];it.pick=i;const ok=it.opts[i]===it.ans;ses.n++;if(ok)ses.ok++;
+const c=card(it.k);
+if(!it.retry){if(ok){c.stage=it.rev?Math.min(c.stage+1,5):Math.max(c.stage,1);c.due=Date.now()+INT[c.stage]*DAY;c.ok++;}
+else{c.stage=1;c.due=Date.now()+DAY;c.no++;ses.q.push(Object.assign(mkQuiz(d,false),{retry:true}));}}
+else if(!ok)c.no++;
+if(!ok&&d.t==='C'&&it.opts[i]===d.hv&&!ses.traps.includes(d.k))ses.traps.push(d.k);
+logE('quiz',it.k,ok);save();if(it.mode==='cloze')say(d.ex[0][0]);};
+
+/* ---------- report for Max ---------- */
+const report=()=>{const days=new Set(st.log.map(l=>new Date(l.t).toISOString().slice(0,10)));
+const q=st.log.filter(l=>l.e==='quiz'),ok=q.filter(l=>l.ok).length;
+const sn=D.filter(d=>seen(d.k)),kn=sn.filter(d=>st.cards[d.k].known);
+const worst=D.filter(d=>st.cards[d.k]&&st.cards[d.k].no>0).sort((a,b)=>st.cards[b.k].no-st.cards[a.k].no).slice(0,5);
+const r={1:0,2:0,3:0};st.fb.forEach(f=>{if(f.r)r[f.r]++;});
+const L=['Cầu Hàn POC 리포트','사용한 날: '+days.size+'일','학습: '+sn.length+'/'+D.length+' (이미 앎: '+kn.length+')','퀴즈 정답: '+ok+'/'+q.length,
+'많이 틀린 단어: '+(worst.map(d=>d.k+' ×'+st.cards[d.k].no).join(', ')||'-'),'세션 평가 – 지루함 '+r[1]+' / 보통 '+r[2]+' / 유익함 '+r[3],'의견:'];
+st.fb.filter(f=>f.txt).forEach(f=>L.push('- '+new Date(f.t).toISOString().slice(0,10)+(f.r?' ['+['','지루함','보통','유익함'][f.r]+'] ':' ')+f.txt));
+L.push('DATA '+JSON.stringify({cards:st.cards,log:st.log.slice(-200)}));return L.join('\n');};
+
+/* ---------- views ---------- */
+const spk=text=>synth?`<button class="spk" data-act="say" data-t="${esc(text)}" aria-label="${t('listen')}">${SPK}</button>`:'';
+const bridge=(d,o={})=>`<div class="bridge${o.anim?' grow':''}" style="--n:${d.s.length}">${d.s.map(x=>`<div class="col"><div class="kos">${x[0]}</div><i class="cab"></i><div class="seal">${x[1]}</div><i class="cab"></i><div class="hvs">${x[2]}</div></div>`).join('')}</div>`;
+const badge=d=>`<span class="badge b${d.t}">${t('type'+d.t)}</span>`;
+const hl=(s,k)=>s.replace(k,'<mark>'+k+'</mark>');
+const fam=(d,all)=>{const f=D.filter(x=>x.k!==d.k&&(all||seen(x.k))&&x.s.some(a=>d.s.some(b=>a[1]===b[1])));
+return f.length?`<p class="fam">${t('sameRoot')}: ${f.map(x=>{const h=x.s.find(a=>d.s.some(b=>a[1]===b[1]));return `<b>${h[1]}</b> ${h[2]} → ${x.k} (${x.vi})`;}).join(' · ')}</p>`:'';};
+const meta=(d,all)=>`<div class="meta">${badge(d)}<div class="mean"><span class="lab">${t('meaning')}</span><b>${d.vi}</b>${d.t!=='A'?` <span class="mut">(${t('hvSays')}: “${d.hv}”)</span>`:''}</div><p class="note">${d.n}</p>${fam(d,all)}</div>`;
+const sents=(d,more)=>{const sh=d.ex.slice(0,1+more),left=d.ex.length-sh.length;
+return `<div class="sents"><span class="lab">${t('real')}</span>${sh.map(e=>`<div class="sent">${spk(e[0])}<div><div class="kr">${hl(e[0],d.k)}</div><div class="vi">${e[1]}</div></div></div>`).join('')}${left>0?`<button class="btn2" data-act="more">${t('more')} (+${Math.min(2,left)})</button>`:''}</div>`;};
+const head=()=>`<div class="head"><h1>Cầu Hàn</h1><button class="lang" data-act="ui">${st.ui==='vi'?'KO':'VI'}</button></div>`;
+const sub=(title,back)=>`<div class="sbar"><button class="x" data-act="${back||'home'}" aria-label="${t('back')}">‹</button><h2>${title}</h2></div>`;
+const stat=(v,l)=>`<div class="st"><b>${v}</b><span>${l}</span></div>`;
+
+const rHome=()=>{const c=counts();const nx=D.find(d=>!seen(d.k));const h=nx||D[Math.floor(Math.random()*D.length)];
+const hj=new Set();let tr=0;D.forEach(d=>{if(seen(d.k)){d.s.forEach(x=>hj.add(x[1]));if(d.t==='C')tr++;}});
+const cap=nx?t('tease'+h.t,{hv:h.hv}):h.vi;const can=c.due+c.fresh>0;
+return `${head()}<p class="tag">${t('tagline')}</p>
+<button class="hero" data-act="${can?'start':'book'}">${bridge(h)}<p class="cap"><span class="kw2">${h.k}</span>${cap}</p></button>
+<div class="stats">${stat(c.learned+'/'+D.length,t('learned'))}${stat(c.due,t('due'))}${stat(hj.size,t('hanja'))}${stat(tr,t('traps'))}</div>
+${can?`<button class="btn big" data-act="start">${t('start')}</button><p class="sub">${t('startSub',{n:c.fresh,r:c.due})}</p>`:`<p class="none">${t('nothing')}</p>`}
+<nav class="nav"><button data-act="book">${t('book')}</button><button data-act="rules">${t('rules')}</button><button data-act="fb">${t('feedback')}</button></nav>
+<p class="foot">${t('sample')} · ${synth?t('voiceNote'):t('noVoice')}</p>`;};
+
+const rLearn=(it,d)=>{const top=`<div class="word"><span class="kw">${d.k}</span>${spk(d.k)}</div>`;
+if(it.phase==='guess')return top+`<p class="q">${t('guessQ')}</p><div class="grid2">${it.opts.map((o,i)=>`<button class="opt" data-act="pick" data-i="${i}">${o}</button>`).join('')}</div><button class="link" data-act="know">${t('know')}</button>`;
+const res=it.known?`<p class="res">${t('knownOk')}</p>`:`<p class="res ${it.ok?'good':'bad'}">${t(it.ok?'resOk':'resNo',{k:d.k,hv:d.hv})}</p>`;
+return top+res+bridge(d,{anim:true})+meta(d,false)+sents(d,it.more)+`<button class="btn" data-act="next">${t('next')}</button>`;};
+
+const rQuiz=(it,d)=>{const e=d.ex[0],done=it.pick>=0;
+const body=it.mode==='mean'
+?`<p class="q">${t('qMean')}</p><div class="sent big">${spk(e[0])}<div><div class="kr">${hl(e[0],d.k)}</div></div></div>`
+:`<p class="q">${t('qCloze')}</p><div class="sent big"><div><div class="kr">${done?hl(e[0],d.k):e[0].replace(d.k,'<span class="blank"></span>')}</div><div class="vi">${e[1]}</div></div></div>`;
+const opts=`<div class="grid2">${it.opts.map((o,i)=>{let c='';if(done){if(o===it.ans)c=' ok';else if(i===it.pick)c=' no';}return `<button class="opt${it.mode==='cloze'?' kro':''}${c}" data-act="qpick" data-i="${i}"${done?' disabled':''}>${o}</button>`;}).join('')}</div>`;
+let fb='';if(done){const ok=it.opts[it.pick]===it.ans,trap=!ok&&d.t==='C'&&it.opts[it.pick]===d.hv;
+fb=`<div class="fb ${ok?'good':'bad'}"><b>${ok?t('correct'):(trap?t('trapHit'):t('wrong'))}</b> ${d.k} = ${d.vi}${d.t!=='A'?`<br>${d.n}`:''}${it.mode==='mean'?`<div class="vi" style="margin-top:6px">${e[1]}</div>`:''}</div><button class="btn" data-act="next">${t('next')}</button>`;}
+return (it.rev?`<span class="tagr">${t('review')}</span>`:'')+body+opts+fb;};
+
+const rSes=()=>{const it=cur(),d=byK[it.k],pct=Math.round(ses.i/ses.q.length*100);
+return `<div class="sbar"><button class="x" data-act="home" aria-label="${t('close')}">×</button><div class="prog"><i style="width:${pct}%"></i></div><span class="cnt">${ses.i+1}/${ses.q.length}</span><button class="spd" data-act="slow">${st.rate<0.85?'0.7×':'1×'}</button></div>${it.type==='learn'?rLearn(it,d):rQuiz(it,d)}`;};
+
+const rDone=()=>{const cs=[...new Set(ses.q.map(x=>x.k))].map(k=>byK[k]).filter(d=>d.t==='C');const left=counts().freshAll;
+return `<div class="done"><h2>${t('done')}</h2><p>${t('doneSum',{n:ses.nNew,r:ses.nRev,ok:ses.ok,all:ses.n})}</p>
+${cs.length?`<h3>${t('trapsToday')}</h3><ul class="trapl">${cs.map(d=>`<li><span class="kr">${d.k}</span> ≠ ${d.hv} → <b>${d.vi}</b></li>`).join('')}</ul>`:''}
+<p class="q">${t('howToday')}</p><div class="rate">${[1,2,3].map(r=>`<button class="chip${ses.rated===r?' on':''}" data-act="rate" data-r="${r}">${t('r'+r)}</button>`).join('')}</div>
+<textarea id="fbtxt" rows="3" placeholder="${t('fbPh')}"></textarea><button class="btn2" data-act="savefb">${t('saveFb')}</button>${fbMsg?`<p class="okmsg">${fbMsg}</p>`:''}
+<button class="btn" data-act="home">${t('home')}</button>${left?`<button class="btn2" data-act="start">${t('learnMore')}</button>`:''}</div>`;};
+
+const rBook=()=>{const list=D.filter(d=>bookF==='all'||d.t===bookF);
+return `${sub(t('book'))}<div class="chips">${['all','A','B','C'].map(f=>`<button class="chip${bookF===f?' on':''}" data-act="filter" data-f="${f}">${t(f==='all'?'fall':'f'+f)}</button>`).join('')}</div>
+<ul class="list">${list.map(d=>`<li><button class="row" data-act="open" data-k="${d.k}"><span class="rk">${d.k}</span><span class="rh">${d.hj} · ${d.hv}</span><span class="rv">${d.vi}</span><span class="dot d${d.t}${seen(d.k)?' on':''}"></span></button></li>`).join('')}</ul>`;};
+
+const rDetail=()=>{const d=byK[openK];return `${sub(d.k,'book')}<div class="word"><span class="kw">${d.k}</span>${spk(d.k)}</div>${bridge(d)}${meta(d,true)}${sents(d,4)}`;};
+
+const rRules=()=>`${sub(t('rules'))}<p>${t('rulesIntro')}</p><p class="mut">${t('rulesEx')}</p>
+${RULES.map(r=>`<div class="rr"><div class="jamo">${r[0]}</div><div><div class="end">→ ${r[1]}</div><div class="exs">${r[2].map(x=>`<button class="ex" data-act="say" data-t="${x[0]}"><span class="kr">${x[0]}</span><span class="h">${x[1]}</span>${x[2]}</button>`).join('')}</div></div></div>`).join('')}`;
+
+const rFb=()=>{const c=counts();return `${sub(t('feedback'))}<div class="stats">${stat(c.learned+'/'+D.length,t('learned'))}${stat(c.due,t('due'))}${stat(st.fb.length,t('feedback'))}${stat(new Set(st.log.map(l=>new Date(l.t).toDateString())).size,st.ui==='vi'?'Ngày dùng':'사용일')}</div>
+<label for="fbtxt" class="q" style="display:block">${t('fbAsk')}</label><textarea id="fbtxt" rows="4" placeholder="${t('fbPh')}"></textarea>
+<button class="btn" data-act="savefb">${t('saveFb')}</button>${fbMsg?`<p class="okmsg">${fbMsg}</p>`:''}
+<h3>${t('report')}</h3><p class="mut">${t('reportHint')}</p><textarea id="rep" rows="5" readonly></textarea><button class="btn2" data-act="copy">${t('copy')}</button>
+<h3>${t('testTools')}</h3><div class="row2"><button class="btn2" data-act="testdue">${t('testDue')}</button><button class="btn2 danger" data-act="reset">${resetArm?t('resetSure'):t('reset')}</button></div>`;};
+
+const app=document.getElementById('app');
+const render=()=>{const ta=document.getElementById('fbtxt');if(ta)draft=ta.value;
+let h;if(scr==='ses'&&cur())h=rSes();else if(scr==='done'&&ses)h=rDone();else if(scr==='book')h=rBook();else if(scr==='detail'&&openK)h=rDetail();else if(scr==='rules')h=rRules();else if(scr==='fb')h=rFb();else{scr='home';h=rHome();}
+app.innerHTML=h;document.documentElement.lang=st.ui;
+const t2=document.getElementById('fbtxt');if(t2)t2.value=draft;const rep=document.getElementById('rep');if(rep)rep.value=report();};
+
+const MOVE=['start','home','book','rules','fb','open','next'];
+app.addEventListener('click',ev=>{const b=ev.target.closest('[data-act]');if(!b||b.disabled)return;const a=b.dataset.act;
+switch(a){
+case 'say':say(b.dataset.t);return;
+case 'ui':st.ui=st.ui==='vi'?'ko':'vi';save();break;
+case 'start':fbMsg='';draft='';newSession(5);speakCur();break;
+case 'home':scr='home';resetArm=false;fbMsg='';break;
+case 'book':scr='book';break;
+case 'rules':scr='rules';break;
+case 'fb':scr='fb';fbMsg='';resetArm=false;break;
+case 'filter':bookF=b.dataset.f;break;
+case 'open':openK=b.dataset.k;scr='detail';say(openK);break;
+case 'slow':st.rate=st.rate<0.85?0.9:0.7;save();break;
+case 'pick':learnPick(+b.dataset.i);break;
+case 'know':learnKnow();break;
+case 'more':{const it=cur();if(it)it.more+=2;break;}
+case 'next':ses.i++;if(ses.i>=ses.q.length){scr='done';logE('end');save();}else speakCur();break;
+case 'qpick':quizPick(+b.dataset.i);break;
+case 'rate':{const r=+b.dataset.r;if(ses.fbIdx!==null&&st.fb[ses.fbIdx])st.fb[ses.fbIdx].r=r;else{st.fb.push({t:Date.now(),r,txt:''});ses.fbIdx=st.fb.length-1;}ses.rated=r;logE('rate',null,r);save();break;}
+case 'savefb':{const ta=document.getElementById('fbtxt');const v=ta?ta.value.trim():'';if(!v)return;
+if(scr==='done'&&ses&&ses.fbIdx!==null&&st.fb[ses.fbIdx]){const f=st.fb[ses.fbIdx];f.txt=f.txt?f.txt+' / '+v:v;}else st.fb.push({t:Date.now(),r:0,txt:v});
+save();ta.value='';draft='';fbMsg=t('thanks');break;}
+case 'copy':{const txt=report();const sel=()=>{const r=document.getElementById('rep');if(r){r.focus();r.select();}};
+try{navigator.clipboard.writeText(txt).then(()=>{b.textContent=t('copied');},sel);}catch(e){sel();}return;}
+case 'testdue':D.forEach(d=>{if(seen(d.k))st.cards[d.k].due=0;});save();fbMsg=t('testDone');break;
+case 'reset':if(!resetArm)resetArm=true;else{st.cards={};st.log=[];st.fb=[];resetArm=false;save();fbMsg=t('resetDone');}break;
+}
+render();if(MOVE.includes(a))window.scrollTo(0,0);});
+document.addEventListener('keydown',e=>{if(e.target.tagName==='TEXTAREA')return;
+if(/^[1-4]$/.test(e.key)){const bs=app.querySelectorAll('.opt:not([disabled])');const b=bs[+e.key-1];if(b)b.click();}
+else if(e.key==='Enter'){const n=app.querySelector('[data-act=next]');if(n)n.click();}});
+render();
+}
+</script>
+</body>
+</html>
