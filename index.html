@@ -129,6 +129,18 @@ textarea{width:100%;font:16px/1.5 'Be Vietnam Pro',sans-serif;padding:12px;borde
 .done h2{font-size:34px;margin:18px 0 6px}
 .trapl{list-style:none;padding:0;margin:8px 0}
 .trapl li{padding:8px 0;border-bottom:1px solid var(--line)}
+.stp{display:grid;place-items:center;width:44px;height:44px;border-radius:8px;font:700 15px/1 'Noto Serif TC',serif;white-space:nowrap}
+.s1{border:1px solid var(--seal);color:var(--seal);opacity:.7}
+.s2{border:3px solid var(--seal);color:var(--seal);background:rgba(215,38,30,.16)}
+.s3{background:var(--seal);color:#fff;box-shadow:inset 0 -3px 0 rgba(0,0,0,.18)}
+.stamps{display:flex;flex-wrap:wrap;gap:14px 10px;list-style:none;margin:10px 0 0;padding:0}
+.stamps li{display:flex;flex-direction:column;align-items:center;width:80px;text-align:center;line-height:1.25}
+.stamps .stp{width:64px;height:64px;font-size:23px}
+.stamps .kr{font-size:15px;margin-top:6px}
+.stamps small{font-size:12px;color:var(--mut)}
+.press{animation:press .5s cubic-bezier(.3,1.3,.6,1) both}
+@keyframes press{from{opacity:0;transform:scale(1.7) rotate(-9deg)}60%{opacity:1}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.press{animation:none}}
 @media(max-width:380px){.opt{font-size:16px}.st b{font-size:20px}}
 </style>
 </head>
@@ -165,6 +177,7 @@ rulesIntro:'Phụ âm cuối (받침) của từ Hán Hàn khớp khá đều v�
 rulesEx:'Có ngoại lệ, ví dụ 승 承 → thừa. Chạm vào ví dụ để nghe.',fbAsk:'Điều gì hay, điều gì chán? Cứ nói thẳng.',
 report:'Báo cáo cho Max',reportHint:'Sao chép đoạn này rồi gửi qua Zalo.',copy:'Sao chép báo cáo',copied:'Đã sao chép!',
 testTools:'Công cụ thử nghiệm',testDue:'Ôn ngay tất cả từ đã học',testDone:'Tất cả từ đã học đều đến hạn ôn.',
+sealToday:'Con dấu hôm nay',seal1:'Dấu mới',seal2:'Dấu đậm hơn',seal3:'Dấu hoàn chỉnh',
 reset:'Xóa tiến độ',resetSure:'Chạm lần nữa để xóa',resetDone:'Đã xóa tiến độ.',close:'Đóng',back:'Quay lại'
 },ko:{
 tagline:'한국 회사에 다니는 베트남인을 위한 한자어',start:'오늘 학습 시작',startSub:'새 단어 {n} · 복습 {r} · 약 3분',
@@ -183,6 +196,7 @@ rulesIntro:'한자어 받침은 베트남 한자음의 끝소리와 규칙적으
 rulesEx:'예외도 있어요. 예: 승 承 → thừa. 예시를 누르면 들을 수 있어요.',fbAsk:'좋았던 점, 지루했던 점을 솔직하게 적어 주세요.',
 report:'Max에게 보낼 리포트',reportHint:'복사해서 Zalo로 보내면 돼요.',copy:'리포트 복사',copied:'복사됨!',
 testTools:'테스트 도구',testDue:'학습한 단어 지금 복습하기',testDone:'학습한 단어를 모두 복습 대상으로 바꿨어요.',
+sealToday:'오늘 찍은 도장',seal1:'첫 도장',seal2:'진해진 도장',seal3:'완성 도장',
 reset:'진도 초기화',resetSure:'한 번 더 누르면 초기화',resetDone:'진도를 초기화했어요.',close:'닫기',back:'뒤로'
 }};
 const INT=[0,1,3,7,14,30],DAY=864e5,KEY='cauhan-poc-v1';
@@ -322,8 +336,14 @@ return (it.rev?`<span class="tagr">${t('review')}</span>`:'')+body+opts+fb;};
 const rSes=()=>{const it=cur(),d=byK[it.k],pct=Math.round(ses.i/ses.q.length*100);
 return `<div class="sbar"><button class="x" data-act="home" aria-label="${t('close')}">×</button><div class="prog"><i style="width:${pct}%"></i></div><span class="cnt">${ses.i+1}/${ses.q.length}</span><button class="spd" data-act="slow">${st.rate<0.85?'0.7×':'1×'}</button></div>${it.type==='learn'?rLearn(it,d):rQuiz(it,d)}`;};
 
+const stamp=(d,lv)=>`<span class="stp s${lv}" role="img" aria-label="${t('seal'+lv)} ${d.hj}">${d.hj}</span>`;
+/* 이번 세션에서 처음 찍혔거나 진해진 도장. 없으면 영역 자체가 없다. 찍히는 애니메이션은 처음 그릴 때만(평가 버튼을 눌러 다시 그려도 반복하지 않는다). */
+const rStamps=()=>{const ks=Object.keys(ses.stamps);if(!ks.length)return '';const anim=!ses.stampShown;ses.stampShown=true;
+return `<h3>${t('sealToday')}</h3><ul class="stamps">${ks.map((k,i)=>{const d=byK[k],lv=ses.stamps[k];return `<li><span${anim?` class="press" style="animation-delay:${Math.min(i,8)*70}ms"`:''}>${stamp(d,lv)}</span><span class="kr">${k}</span><small>${t('seal'+lv)}</small></li>`;}).join('')}</ul>`;};
+
 const rDone=()=>{const cs=[...new Set(ses.q.map(x=>x.k))].map(k=>byK[k]).filter(d=>d.t==='C');const left=counts().freshAll;
 return `<div class="done"><h2>${t('done')}</h2><p>${t('doneSum',{n:ses.nNew,r:ses.nRev,ok:ses.ok,all:ses.n})}</p>
+${rStamps()}
 ${cs.length?`<h3>${t('trapsToday')}</h3><ul class="trapl">${cs.map(d=>`<li><span class="kr">${d.k}</span> ≠ ${d.hv} → <b>${d.vi}</b></li>`).join('')}</ul>`:''}
 <p class="q">${t('howToday')}</p><div class="rate">${[1,2,3].map(r=>`<button class="chip${ses.rated===r?' on':''}" data-act="rate" data-r="${r}">${t('r'+r)}</button>`).join('')}</div>
 <textarea id="fbtxt" rows="3" placeholder="${t('fbPh')}"></textarea><button class="btn2" data-act="savefb">${t('saveFb')}</button>${fbMsg?`<p class="okmsg">${fbMsg}</p>`:''}
