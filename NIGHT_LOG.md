@@ -34,7 +34,7 @@
 - **주의: /dev/와 main 사이트는 같은 주소(origin)라 한 브라우저에서 진도를 공유한다.** 테스트 도구와 "Xóa tiến độ"는 main 쪽 진도와 도장도 바꾼다. 테스터의 폰에서는 누르지 말 것
 
 ### 막힌 것
-- [!] **dev 푸시 실패(인증)**: `could not read Username for 'https://github.com'`. git의 인증 도우미(manager)에서 이 세션이 쓸 수 있는 저장된 인증을 얻지 못했다. 권한·보호 규칙의 거부인지는 서버까지 인증이 안 돼 알 수 없다. 커밋은 로컬 dev에만 있고, /dev/ 배포도 아직 안 됐다(배포 상태 확인 못 함, gh도 로그인 안 됨). Max가 `git push -u origin dev` 실행 후 Actions의 배포 성공을 확인할 것. 배포가 막히면 Settings → Environments → github-pages → Deployment branches에 dev가 허용됐는지 본다
+- (해결, 2026-11-26) dev 푸시 인증 실패: 저장된 GitHub 인증이 없었다. Max가 GitHub CLI 코드 로그인을 승인한 뒤 푸시했고, Deploy Pages 성공과 /dev/에 도장 코드가 반영된 것, main 사이트에는 없는 것을 확인했다
 - 지시서의 "BACKLOG 제안 1순위 도장 수집"은 dev의 BACKLOG.md에 없었다. 제안 커밋(456e9d7)은 옛 지점에서 갈라진 origin/claude/beautiful-brahmagupta-x8ed7p에만 있다. origin/dev가 있으므로 지시대로 dev에서 작업했고, 그 브랜치는 머지하지 않았다. 도장 수집만 완료 섹션에 적었고 나머지 제안은 옮기지 않았다
 - 오늘 메시지가 "1순위 도장"에서 끊겨, 같은 문장으로 시작하는 로컬 stamp-prompt.md를 전체 지시서로 보고 따랐다. 이 파일은 개인 내용이 있어 커밋하지 않았다(추적 안 됨 상태 그대로)
 - 시작할 때 작업 트리의 변경은 이 지시서 파일 하나뿐이라 멈추지 않고 진행했다
